@@ -1,0 +1,51 @@
+[instance: <*>] Attempting claim: memory <*> MB, disk <*> GB, vcpus <*> CPU
+[instance: <*>] Claim successful
+[instance: <*>] Creating image
+[instance: <*>] Deleting instance files <*>
+[instance: <*>] Deletion of <*> complete
+[instance: <*>] disk limit not specified, defaulting to unlimited
+[instance: <*>] During sync_power_state the instance has a pending task (spawning). Skip.
+[instance: <*>] Instance destroyed successfully.
+[instance: <*>] Instance spawned successfully.
+[instance: <*>] memory limit: <*>.<*> MB, free: <*>.<*> MB
+[instance: <*>] Terminating instance
+[instance: <*>] Took <*>.<*> seconds to build instance.
+[instance: <*>] Took <*>.<*> seconds to deallocate network for instance.
+[instance: <*>] Took <*>.<*> seconds to destroy the instance on the hypervisor.
+[instance: <*>] Took <*>.<*> seconds to spawn the instance on the hypervisor.
+[instance: <*>] Total disk: <*> GB, used: <*>.<*> GB
+[instance: <*>] Total memory: <*> MB, used: <*>.<*> MB
+[instance: <*>] Total vcpu: <*> VCPU, used: <*>.<*> VCPU
+[instance: <*>] vcpu limit not specified, defaulting to unlimited
+[instance: <*>] VM Paused (Lifecycle Event)
+[instance: <*>] VM Resumed (Lifecycle Event)
+[instance: <*>] VM Started (Lifecycle Event)
+[instance: <*>] VM Stopped (Lifecycle Event)
+<*> "DELETE <*>" status: <*> len: <*> time: <*>.<*>
+<*> "GET <*>" status: <*> len: <*> time: <*>.<*>
+<*> "POST <*>" status: <*> len: <*> time: <*>.<*>
+Active base files: <*>
+Auditing locally available compute resources for node <*>
+Base or swap file too young to remove: <*>
+Compute_service record updated for <*>
+Creating event network-vif-plugged:<*>-<*>-<*>-<*>-<*> for instance <*>
+Final resource view: name=<*> phys_ram=<*> used_ram=<*> phys_disk=<*> used_disk=<*> total_vcpus=<*> used_vcpus=<*> pci_stats=[]
+HTTP exception thrown: No instances found for any event
+image <*> at (<*>): checking
+image <*> at (<*>): in use: on this node <*> local, <*> on other nodes sharing this instance storage
+Removable base files: <*>
+Removing base or swap file: <*>
+Running instance usage audit for host <*> from <*>-<*>-<*> <*>:<*>:<*> to <*>-<*>-<*> <*>:<*>:<*>. <*> instances.
+Successfully synced instances from host '<*>'.
+The instance sync for host '<*>' did not match. Re-created its InstanceList.
+Total usable vcpus: <*>, total allocated vcpus: <*>
+Unknown base file: <*>
+While synchronizing instance power states, found <*> instances in the database and <*> instances on the hypervisor.
+couldn't obtain the vcpu count from domain id: <*>, exception: Requested operation is not valid: cpu affinity is not supported
+[instance: <*>] During sync_power_state the instance has a pending task (deleting). Skip.
+oslo_service.periodic_task<*>
+[instance: <*>] During sync_power_state the instance has a pending task (networking). Skip.
+Error during <*>
+Bad response code while validating token: <*>
+Identity response: <*>
+Unable to validate token: Failed to fetch token data from identity server

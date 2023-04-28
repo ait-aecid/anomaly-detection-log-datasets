@@ -1,0 +1,33 @@
+<*>Adding an already existing block<*>
+<*>Verification succeeded for<*>
+<*>Served block<*>to<*>
+<*>Got exception while serving<*>to<*>
+<*>Receiving block<*>src:<*>dest:<*>
+<*>Received block<*>src:<*>dest:<*>of size<*>
+<*>writeBlock<*>received exception<*>
+<*>PacketResponder<*>for block<*>Interrupted<*>
+<*>Received block<*>of size<*>from<*>
+<*>PacketResponder<*>Exception<*>
+<*>PacketResponder <*> for block <*> terminating<*>
+<*>:Exception writing block<*>to mirror<*>
+<*>Receiving empty packet for block<*>
+<*>Exception in receiveBlock for block<*>
+<*>Changing block file offset of block<*>from<*>to<*>meta file offset to<*>
+<*>:Transmitted block<*>to<*>
+<*>:Failed to transfer<*>to<*>got<*>
+<*>Starting thread to transfer block<*>to<*>
+<*>Reopen Block<*>
+<*>Unexpected error trying to delete block<*>BlockInfo not found in volumeMap<*>
+<*>Deleting block<*>file<*>
+<*>BLOCK* NameSystem<*>allocateBlock:<*>
+<*>BLOCK* NameSystem<*>delete:<*>is added to invalidSet of<*>
+<*>BLOCK* Removing block<*>from neededReplications as it does not belong to any file<*>
+<*>BLOCK* ask<*>to replicate<*>to<*>
+<*>BLOCK* NameSystem<*>addStoredBlock: blockMap updated:<*>is added to<*>size<*>
+<*>BLOCK* NameSystem<*>addStoredBlock: Redundant addStoredBlock request received for<*>on<*>size<*>
+<*>BLOCK* NameSystem<*>addStoredBlock: addStoredBlock request received for<*>on<*>size<*>But it does not belong to any file.
+<*>PendingReplicationMonitor timed out block<*>
+<*>BLOCK* ask <*> to delete <*>
+<*>DataXceiver<*>DataXceiver<*>Block <*> is valid, and cannot be written to.
+<*>Block <*> is not valid.
+<*>cannot access <*> No such file or directory

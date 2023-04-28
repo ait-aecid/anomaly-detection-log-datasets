@@ -1,0 +1,294 @@
+<*> failures on node <*>
+Added attempt_<*> to list of failed maps
+Added filter AM_PROXY_FILTER (class=org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter) to context mapreduce
+Added filter AM_PROXY_FILTER (class=org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter) to context static
+Added global filter 'safety' (class=org.apache.hadoop.http.HttpServer2$QuotingInputFilter)
+Adding #<*> tokens and #<*> secret keys for NM use for launching container
+Adding job token for job_<*> to jobTokenSecretManager
+adding path spec: /<*>/*
+Adding protocol org.apache.hadoop.mapreduce.v2.api.MRClientProtocolPB to the server
+Address change detected. Old: <*> New: <*>
+After Scheduling: PendingReds:<*> ScheduledMaps:<*> ScheduledReds:<*> AssignedMaps:<*> AssignedReds:<*> CompletedMaps:<*> CompletedReds:<*> ContAlloc:<*> ContRel:<*> HostLocal:<*> RackLocal:<*>
+All maps assigned. Ramping up all remaining reduces:<*>
+Assigned container container_<*> to attempt_<*>
+attempt_<*> TaskAttempt Transitioned from ASSIGNED to RUNNING
+attempt_<*> TaskAttempt Transitioned from FAIL_CONTAINER_CLEANUP to FAIL_TASK_CLEANUP
+attempt_<*> TaskAttempt Transitioned from FAIL_TASK_CLEANUP to FAILED
+attempt_<*> TaskAttempt Transitioned from NEW to UNASSIGNED
+attempt_<*> TaskAttempt Transitioned from RUNNING to FAIL_CONTAINER_CLEANUP
+attempt_<*> TaskAttempt Transitioned from RUNNING to SUCCESS_CONTAINER_CLEANUP
+attempt_<*> TaskAttempt Transitioned from SUCCESS_CONTAINER_CLEANUP to SUCCEEDED
+attempt_<*> TaskAttempt Transitioned from UNASSIGNED to ASSIGNED
+ATTEMPT_START task_<*>
+Auth successful for job_<*> (auth:SIMPLE)
+Before Scheduling: PendingReds:<*> ScheduledMaps:<*> ScheduledReds:<*> AssignedMaps:<*> AssignedReds:<*> CompletedMaps:<*> CompletedReds:<*> ContAlloc:<*> ContRel:<*> HostLocal:<*> RackLocal:<*>
+blacklistDisablePercent is <*>
+Cannot assign container Container: [ContainerId: container_<*>, NodeId: <*>:<*>, NodeHttpAddress: <*>:<*>, Resource: <memory:<*>, vCores:<*>>, Priority: <*>, Token: Token { kind: ContainerToken, service: <*>:<*> }, ] for a map as either  container memory less than required <memory:<*>, vCores:<*>> or no pending map tasks - maps.isEmpty=true
+Connecting to ResourceManager at <*>
+Container complete event for unknown container id container_<*>
+Created MRAppMaster for application appattempt_<*>
+DataStreamer Exception
+Default file system <*>
+DefaultSpeculator.addSpeculativeAttempt -- we are speculating task_<*>
+DFSOutputStream ResponseProcessor exception  for block BP-<*>:blk_<*>
+Diagnostics report from attempt_<*>: Container killed by the ApplicationMaster.
+Diagnostics report from attempt_<*>: Error: java.net.NoRouteToHostException: No Route to Host from  MININT-<*>/<*> to <*>:<*> failed on socket timeout exception: java.net.NoRouteToHostException: No route to host: no further information; For more details see:  http://wiki.apache.org/hadoop/NoRouteToHost
+Done acknowledgement from attempt_<*>
+Emitting job history data to the timeline server is not enabled
+ERROR IN CONTACTING RM.
+Error Recovery for block <*> in pipeline <*>, <*>: bad datanode <*>
+Error writing History Event: <*>
+Event Writer setup for JobId: job_<*>, File: <*>
+Executing with tokens:
+Extract jar:file:<*> to <*>
+Failed to renew lease for [DFSClient_NONMAPREDUCE_<*>_<*>] for <*> seconds.  Will retry shortly ...
+getResources() for application_<*>: ask=<*> release= <*> newContainers=<*> finishedContainers=<*> resourcelimit=<memory:<*>, vCores:<*>> knownNMs=<*>
+Got allocated containers <*>
+Http request log for http.requests.mapreduce is not defined
+Input size for job job_<*> = <*>. Number of splits = <*>
+Instantiated MRClientService at <*>
+IPC Server listener on <*>: starting
+IPC Server Responder: starting
+Jetty bound to port <*>
+jetty-6.1.26
+job_<*>Job Transitioned from INITED to SETUP
+job_<*>Job Transitioned from NEW to INITED
+job_<*>Job Transitioned from SETUP to RUNNING
+JOB_CREATE job_<*>
+JVM with ID : jvm_<*> asked for a task
+JVM with ID: jvm_<*> given task: <*>_<*>
+KILLING attempt_<*>
+Kind: YARN_AM_RM_TOKEN, Service: , Ident: (appAttemptId { application_id { id: <*> cluster_timestamp: <*> } attemptId: <*> } keyId: <*>)
+Launching attempt_<*>
+loaded properties from hadoop-metrics2.properties
+Logging to <*>(org.mortbay.log) via <*>
+mapResourceRequest:<memory:<*>, vCores:<*>>
+maxContainerCapability: <memory:<*>, vCores:<*>>
+maxTaskFailuresPerNode is <*>
+MRAppMaster launching normal, non-uberized, multi-container job job_<*>.
+MRAppMaster metrics system started
+nodeBlacklistingEnabled:true
+Not uberizing job_<*> because: not enabled; too many maps; too much input;
+Num completed Tasks: <*>
+Number of reduces for job job_<*> = <*>
+Opening proxy : <*>:<*>
+OutputCommitter is org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
+OutputCommitter set in config null
+Processing the event EventType: CONTAINER_REMOTE_<*> for container container_<*> taskAttempt attempt_<*>
+Processing the event EventType: JOB_SETUP
+Processing the event EventType: TASK_ABORT
+Progress of TaskAttempt attempt_<*> is : <*>
+Putting shuffle token in serviceData
+queue: default
+Recalculating schedule, headroom=<memory:<*>, vCores:<*>>
+Received completed container container_<*>
+Reduce slow start threshold not met. completedMapsForReduceSlowstart <*>
+Reduce slow start threshold reached. Scheduling reduces.
+reduceResourceRequest:<memory:<*>, vCores:<*>>
+Registered webapp guice modules
+Registering class org.apache.hadoop.mapreduce.<*> for class org.apache.hadoop.mapreduce.<*>
+Resolved <*> to /default-rack
+Retrying connect to server: <*>:<*>. Already tried <*> time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=<*>, sleepTime=<*> MILLISECONDS)
+Scheduled snapshot period at <*> second(s).
+Scheduling a redundant attempt for task task_<*>
+Shuffle port returned by ContainerManager for attempt_<*> : <*>
+Size of containertokens_dob is <*>
+Slow ReadProcessor read fields took <*>ms (threshold=<*>ms); ack: seqno: <*> status: SUCCESS status: ERROR downstreamAckTimeNanos: <*>, targets: [<*>:<*>, <*>:<*>]
+Started HttpServer2$SelectChannelConnectorWithSafeStartup@<*>:<*>
+Starting Socket Reader #<*> for port <*>
+Task cleanup failed for attempt attempt_<*>
+Task succeeded with attempt attempt_<*>
+Task: attempt_<*> - exited : java.net.NoRouteToHostException: No Route to Host from  <*> to <*> failed on socket timeout exception: java.net.NoRouteToHostException: No route to host: no further information; For more details see:  http://wiki.apache.org/hadoop/NoRouteToHost
+task_<*> Task Transitioned from NEW to SCHEDULED
+task_<*> Task Transitioned from RUNNING to SUCCEEDED
+task_<*> Task Transitioned from SCHEDULED to RUNNING
+TaskAttempt: [attempt_<*>] using containerId: [container_<*>_<*>_<*>_<*> on NM: [<*>:<*>]
+The job-conf file on the remote FS is <*>
+The job-jar file on the remote FS is <*>
+Thread Thread[eventHandlingThread,<*>,main] threw an Exception.
+Upper limit on the thread pool size is <*>
+Using callQueue class java.util.concurrent.LinkedBlockingQueue
+Using mapred newApiCommitter.
+We launched <*> speculations.  Sleeping <*> milliseconds.
+Web app /mapreduce started at <*>
+yarn.client.max-cached-nodemanagers-proxies : <*>
+bufstart = <*>; bufend = <*>; bufvoid = <*>
+kvstart = <*>; kvend = <*>; length = <*>
+(EQUATOR) <*> kvi <*>
+Finished spill <*>
+(RESET) equator <*> kv <*> kvi <*>
+Spilling map output
+Merging <*> sorted segments
+Down to the last merge-pass, with <*> segments left of total size: <*> bytes
+Task:attempt_<*> is done. And is in the process of committing
+Task 'attempt_<*>' done.
+Stopping MapTask metrics system...
+MapTask metrics system stopped.
+MapTask metrics system shutdown complete.
+MapTask metrics system started
+Kind: mapreduce.job, Service: job_<*>, Ident: <*>
+Sleeping for <*>ms before retrying again. Got <*> now.
+mapreduce.cluster.local.dir for child: <*>
+session.id is deprecated. Instead, use dfs.metrics.session-id
+ProcfsBasedProcessTree currently is supported only on Linux.
+ Using ResourceCalculatorProcessTree : <*>
+Processing split: <*>
+soft limit at <*>
+Map output collector class = <*>
+kvstart = <*>; length = <*>
+bufstart = <*>; bufvoid = <*>
+mapreduce.task.io.sort.mb: <*>
+Starting flush of map output
+Retrying connect to server: <*>. Already tried <*> time(s); maxRetries=<*>
+Diagnostics report from attempt_<*>: Container released on a *lost* node
+Killing taskAttempt:attempt_<*> because it is running on unusable <*>
+Merging <*> segments, <*> bytes from memory into reduce
+Issuing kill to other attempt attempt_<*>
+Socket Reader <*> for port <*>: readAndProcess from client <*> threw exception [java.io.IOException: An existing connection was forcibly closed by the remote host]
+Assigned to reduce
+Setting job diagnostics to
+MapCompletionEvents request from attempt_<*>. startIndex <*> maxEvents <*>
+Commit-pending state update from attempt_<*>
+attempt_<*> given a go for committing the task output.
+Commit go/no-go request from attempt_<*>
+Result of canCommit for attempt_<*>:<*>
+mapred.skip.on is deprecated. Instead, use mapreduce.job.skiprecords
+We are finishing cleanly so this is the last retry
+Notify <*> <*>: <*>
+<*> notified that <*> is: <*>
+attempt_<*>: Got <*> new map-outputs
+Assigning <*> with <*> to <*>
+assigned <*> of <*> to <*> to <*>
+Read <*> bytes from map-output for attempt_<*>
+<*> freed by <*> in <*>
+for <*> sent hash and received reply
+History url is <*>
+Final Stats: <*>
+Deleting staging directory <*>
+Stopping server on <*>
+Stopping IPC Server listener on <*>
+Stopping IPC Server Responder
+TaskHeartbeatHandler thread interrupted
+Failure sending status update: java.io.IOException: Failed on local exception: java.io.IOException: An existing connection was forcibly closed by the remote host; Host Details : local host is: <*>; destination host is: <*>
+Communication exception: java.io.IOException: Failed on local exception: java.io.IOException: An existing connection was forcibly closed by the remote host; Host Details : local host is: <*>; destination host is: <*>
+Could not contact RM after <*> milliseconds.
+Error communicating with RM: Could not contact RM after <*> milliseconds.
+attempt_<*> TaskAttempt Transitioned from KILL_TASK_CLEANUP to KILLED
+attempt_<*> TaskAttempt Transitioned from RUNNING to KILL_CONTAINER_CLEANUP
+attempt_<*> TaskAttempt Transitioned from KILL_CONTAINER_CLEANUP to KILL_TASK_CLEANUP
+job_<*>Job Transitioned from RUNNING to ERROR
+Could not delete <*>
+attempt_<*>: Shuffling to disk since <*> is greater than maxSingleShuffleLimit (<*>)
+<*> about to shuffle output of map attempt_<*> decomp: <*> len: <*> to DISK
+MergerManager: memoryLimit=<*>, maxSingleShuffleLimit=<*>, mergeThreshold=<*>, ioSortFactor=<*>, memToMemMergeOutputsThreshold=<*>
+EventFetcher is interrupted.. Returning
+finalMerge called with <*> in-memory map-outputs and <*> on-disk map-outputs
+Merging <*> files, <*> bytes from disk
+Task attempt_<*> is allowed to commit now
+Saved output of task 'attempt_<*>' to <*>
+Diagnostics report from attempt_<*>: AttemptID:attempt_<*> Timed out after <*> secs
+ReduceTask metrics system started
+Using ShuffleConsumerPlugin: <*>
+completedMapPercent <*> totalResourceLimit:<memory:<*>, vCores:<*>> <*>
+Going to preempt <*> due to lack of space for maps
+Ramping down all scheduled reduces:<*>
+Exception in getting events
+attempt_<*> TaskAttempt Transitioned from RUNNING to COMMIT_PENDING
+attempt_<*> TaskAttempt Transitioned from COMMIT_PENDING to SUCCESS_CONTAINER_CLEANUP
+job_<*>Job Transitioned from RUNNING to COMMITTING
+Stopped JobHistoryEventHandler. super.stop()
+Moved <*> to done: <*>
+Calling handler for <*>
+job_<*>Job Transitioned from COMMITTING to SUCCEEDED
+Processing the event EventType: JOB_COMMIT
+<*> notified that <*> is <*>
+Calling <*> for all the services
+Stopping <*>. Size of the outstanding queue size is <*>
+In stop, writing event TASK_FINISHED
+In stop, writing event JOB_FINISHED
+Copying <*> to <*>
+Copied to done location: <*>
+Recovering task task_<*> from prior app attempt, status was <*>
+attempt_<*> TaskAttempt Transitioned from NEW to SUCCEEDED
+task_<*> Task Transitioned from NEW to SUCCEEDED
+Ramping up <*>
+Waiting for application to be successfully unregistered.
+attempt_<*> Thread started: EventFetcher for fetching Map Completion Events
+Stopping ReduceTask metrics system...
+ReduceTask metrics system stopped.
+ReduceTask metrics system shutdown complete.
+Releasing unassigned and invalid container Container: <*>
+Recovery is enabled. Will try to recover from previous life on best effort basis.
+Previous history file is at <*>
+Unable to parse prior job history, aborting recovery
+Could not parse the old history file. <*>
+Read from history task task_<*>
+Read completed tasks from history <*>
+attempt_<*> TaskAttempt Transitioned from NEW to KILLED
+TaskAttempt killed because it ran on unusable node <*>
+attempt_<*> TaskAttempt Transitioned from SUCCEEDED to KILLED
+task_<*> Task Transitioned from SUCCEEDED to SCHEDULED
+Merging <*> intermediate segments out of a total of <*>
+Exception in createBlockOutputStream
+Abandoning <*>
+Excluding datanode <*>
+attempt_<*> TaskAttempt Transitioned from RUNNING to KILLED
+Last retry, killing attempt_<*>
+Process Thread Dump: Communication exception
+Communication exception: java.net.NoRouteToHostException: No Route to Host from <*>
+DFS Read
+DFS chooseDataNode: got # <*> IOException, will wait for <*> msec.
+Failed to connect to <*> for block, add to deadNodes and continue. java.net.NoRouteToHostException: No route to host: no further information
+I/O error constructing remote block reader.
+Could not obtain <*> from any node: java.io.IOException: No live nodes contain block <*> after checking nodes <*>
+Exception while unregistering
+Skipping cleaning up the staging dir. assuming AM will be retried.
+Service <*> failed in state STOPPED; cause: <*>
+Graceful stop failed
+Diagnostics report from attempt_<*>:
+IPC Server handler <*>
+Ignoring obsolete output of <*>
+Preempting attempt_<*>
+Reduce preemption successful attempt_<*>
+Processing the event EventType: CONTAINER_DEALLOCATE
+attempt_<*> TaskAttempt Transitioned from UNASSIGNED to KILLED
+Error communicating with RM: Resource Manager doesn't recognize AttemptId: application_<*>
+job_<*>Job Transitioned from RUNNING to REBOOT
+Connection retry failed with <*> attempts in <*> seconds
+Failed to connect to <*> with <*> map outputs
+Reporting fetch failure for attempt_<*> to jobtracker.
+Task: attempt_<*> - exited : java.io.IOException: There is not enough space on the disk
+Diagnostics report from attempt_<*>: Error: java.io.IOException: There is not enough space on the disk
+Failed to connect to <*> for block, add to deadNodes and continue. java.net.ConnectException: Connection timed out: no further information
+Assigned from earlierFailedMaps
+Assigning container Container: <*>
+Runnning cleanup for the task
+Task: attempt_<*> - exited : java.io.IOException: Spill failed
+Diagnostics report from attempt_<*>: Error: java.io.IOException: Spill failed
+Communication exception: java.net.ConnectException: <*>
+Successfully connected to <*> for <*>
+Task attempt_<*> failed : org.apache.hadoop.fs.FSError: java.io.IOException: There is not enough space on the disk
+Task: attempt_<*> - failed due to FSError: java.io.IOException: There is not enough space on the disk
+Diagnostics report from attempt_<*>: FSError: java.io.IOException: There is not enough space on the disk
+Exception running child : java.net.NoRouteToHostException: No Route to Host from <*>
+Exception cleaning up: java.net.NoRouteToHostException: No Route to Host from <*>
+In stop, writing event MAP_ATTEMPT_FAILED
+When stopping the service JobHistoryEventHandler : org.apache.avro.AvroTypeException: Attempt to process a enum when a union was expected.
+cleanup failed for container container_<*> : java.lang.IllegalArgumentException: java.net.UnknownHostException: <*>
+Diagnostics report from attempt_<*>: cleanup failed for container container_<*> : java.lang.IllegalArgumentException: java.net.UnknownHostException: <*>
+Failed to connect to <*> for block, add to deadNodes and continue. java.net.ConnectException: Connection refused: no further information
+attempt_<*> TaskAttempt Transitioned from NEW to FAILED
+Task: attempt_<*> - exited : org.apache.hadoop.mapreduce.task.reduce.Shuffle$ShuffleError: error in shuffle in <*>
+Found jobId job_<*> to have not been closed. Will close
+When stopping the service JobHistoryEventHandler : org.apache.hadoop.yarn.exceptions.YarnRuntimeException: java.net.NoRouteToHostException: No Route to Host from <*>
+Diagnostics report from attempt_<*>: Error: org.apache.hadoop.mapreduce.task.reduce.Shuffle$ShuffleError: error in shuffle in <*>
+Exception running child : org.apache.hadoop.mapreduce.task.reduce.Shuffle$ShuffleError: error in shuffle in <*>
+attempt_<*> TaskAttempt Transitioned from ASSIGNED to KILL_CONTAINER_CLEANUP
+Shuffle failed : local error on this node: <*>
+Error closing writer for JobID: job_<*>
+Task: attempt_<*> - exited : org.apache.hadoop.util.DiskChecker$DiskErrorException: Could not find any valid local directory for <*>
+Diagnostics report from attempt_<*>: Error: org.apache.hadoop.util.DiskChecker$DiskErrorException: Could not find any valid local directory for <*>
+Ignoring exception during close for <*>
+Exception running child : org.apache.hadoop.util.DiskChecker$DiskErrorException: Could not find any valid local directory for <*>
+When stopping the service JobHistoryEventHandler : org.apache.hadoop.yarn.exceptions.YarnRuntimeException: java.nio.channels.ClosedChannelException
+MapCompletionEvents reques
