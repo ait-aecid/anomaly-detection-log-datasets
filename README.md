@@ -54,6 +54,22 @@ git clone https://github.com/verazuo/a-labelled-version-of-the-ADFA-LD-dataset
 unzip a-labelled-version-of-the-ADFA-LD-dataset/ADFA-LD.zip -d .
 ```
 
+## Parsing the data sets
+
+To parse the data, run the respective <dataset>_parse.py script. The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template.
+
+```
+python3 hdfs_parse.py
+```
+
+## Sampling the data sets
+  
+To generate training and test files, run the sample.py script and specify the directory of the log data to be sampled. Moreover, the sampling ratio can be specified. For example, use the following command to sample the HDFS log data set so that the training file comprises 1% of the normal events.
+  
+```
+python3 sample.py --data_dir hdfs_xu --train_ratio 0.01
+```
+  
 ## Citation
 
 If you use any resources from this repository, please cite the following publication:
