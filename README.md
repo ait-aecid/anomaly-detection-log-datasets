@@ -44,6 +44,16 @@ tar -xvf Hadoop.tar.gz -C logs
 For more information on this data set, see
  * Lin, Q., Zhang, H., Lou, J. G., Zhang, Y., & Chen, X. (2016, May). Log clustering based problem identification for online service systems. In Proceedings of the 38th International Conference on Software Engineering Companion (pp. 102-111).
 
+### Thunderbird
+
+```
+wget http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcdn.com/hpc4/tbird2.gz
+gunzip tbird2.gz
+```
+
+Fore more information on this data set, see
+ * Oliner, A., & Stearley, J. (2007, June). What supercomputers say: A study of five system logs. In 37th annual IEEE/IFIP international conference on dependable systems and networks (DSN'07) (pp. 575-584). IEEE.
+
 ### ADFA
 
 ```
@@ -56,7 +66,7 @@ For more information on this data set, see
 
 ## Parsing the data sets
 
-To parse the data, run the respective <dataset>_parse.py script. The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template.
+To parse the data, run the respective `<dataset>_parse.py` script. The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template.
 
 ```
 python3 hdfs_parse.py
