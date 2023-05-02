@@ -292,3 +292,58 @@ Ignoring exception during close for <*>
 Exception running child : org.apache.hadoop.util.DiskChecker$DiskErrorException: Could not find any valid local directory for <*>
 When stopping the service JobHistoryEventHandler : org.apache.hadoop.yarn.exceptions.YarnRuntimeException: java.nio.channels.ClosedChannelException
 MapCompletionEvents reques
+ ... <*> more
+<*> <*> INFO [IPC Server handler 28 on 55796] org.apache.hadoop.map
+<*> active threads
+Thread <*> (SpillThread):
+Thread <*> (org.apache.hadoop.hdfs.PeerCache@<*>):
+Thread <*> (communication thread):
+Thread <*> (Thread for syncLogs):
+Thread <*> (IPC Parameter Sending Thread #0):
+Thread <*> (Timer for 'MapTask' metrics system):
+Thread <*> (Thread-1):
+Thread <*> (Attach Listener):
+Thread <*> (Signal Dispatcher):
+Thread <*> (Finalizer):
+Thread <*> (Reference Handler):
+Thread <*> (main):
+Thread <*> (Readahead Thread <*>):
+Container killed on request. Exit code is <*>
+Container exited with a non-zero exit code <*>
+java.io.IOException: An existing connection was forcibly closed by the remote host
+java.io.IOException: Bad response ERROR for block <*> from datanode <*>
+java.io.IOException: Incompatible event log version: <*>
+java.io.IOException: Failed on local exception: <*>
+java.io.IOException: Bad connect ack with firstBadLink as <*>
+java.lang.NullPointerException
+java.nio.channels.ClosedChannelException
+    <*>
+  State: <*>
+  Blocked count: <*>
+  Waited count: <*>
+  Stack:
+  Waiting on <*>
+Caused by: java.net.NoRouteToHostException: No route to host: no further information
+Caused by: java.io.IOException: An existing connection was forcibly closed by the remote host
+Caused by: java.nio.channels.UnresolvedAddressException
+Caused by: java.net.SocketException: Permission denied: no further information
+Caused by: java.io.IOException: Couldn't set up IO streams
+Caused by: java.net.UnknownHostException: <*>
+Caused by: org.apache.hadoop.yarn.exceptions.ApplicationAttemptNotFoundException: Application attempt <*> doesn't exist in ApplicationMasterService cache.
+Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.yarn.exceptions.ApplicationAttemptNotFoundException): Application attempt <*> doesn't exist in ApplicationMasterService cache.
+Caused by: java.io.IOException: There is not enough space on the disk
+Caused by: org.apache.hadoop.fs.FSError: java.io.IOException: There is not enough space on the disk
+Caused by: java.net.NoRouteToHostException: No Route to Host <*>
+Caused by: java.net.ConnectException: Connection timed out: no further information
+Caused by: java.nio.channels.ClosedChannelException
+org.apache.hadoop.yarn.exceptions.YarnRuntimeException: Resource Manager doesn't recognize AttemptId: <*>
+org.apache.hadoop.yarn.exceptions.YarnRuntimeException: java.net.NoRouteToHostException: No Route to Host <*>
+org.apache.hadoop.yarn.exceptions.YarnRuntimeException: Could not contact RM after <*> milliseconds.
+org.apache.hadoop.yarn.exceptions.YarnRuntimeException: java.nio.channels.ClosedChannelException
+java.net.ConnectException: Connection timed out: no further information
+java.net.NoRouteToHostException: No Route to Host <*>
+java.net.ConnectException: Connection timed out: connect
+java.net.NoRouteToHostException: No route to host: no further information
+org.apache.avro.AvroTypeException: Attempt to process a enum when a union was expected.
+java.net.ConnectException: Connection refused: no further information
+ at <*>

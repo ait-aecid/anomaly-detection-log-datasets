@@ -44,7 +44,12 @@ with open(source + '/anomaly_label.csv') as labels_file:
         labels[name] = label
 
 with open(source + '/' + hdfs_file) as log_file, open('templates/HDFS_templates.csv') as templates_file, open(source + '/parsed.csv', 'w+') as ext_file:
-    ext_file.write('id;event_type;seq_id;time;label\n')
+    header = 'id;event_type;seq_id;time;label'
+    if output_line:
+        header += ";line"
+    if output_params:
+        header += ";params"
+    ext_file.write(header + '\n')
     for line in templates_file:
         template = line.strip('\n').rstrip(' ').strip('<*>').split('<*>') # template is string after first appearance of comma
         templates.append(template)

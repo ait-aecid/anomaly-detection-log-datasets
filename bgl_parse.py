@@ -45,7 +45,12 @@ events_allow_spaces = [82, 84, 172, 194, 293, 328, 362, 371, 397]
 
 print('Read lines ...')
 with open(source + '/' + bgl_file) as log_file, open('templates/BGL_templates.csv') as templates_file, open(source + '/parsed.csv', 'w+') as ext_file:
-    ext_file.write('id;event_type;seq_id;time;label;eventlabel\n')
+    header = 'id;event_type;seq_id;time;label;eventlabel'
+    if output_line:
+        header += ";line"
+    if output_params:
+        header += ";params"
+    ext_file.write(header + '\n')
     for line in templates_file:
         template = line.strip('\n').rstrip(' ').split('<*>') # template is string after first appearance of comma
         templates.append(template)

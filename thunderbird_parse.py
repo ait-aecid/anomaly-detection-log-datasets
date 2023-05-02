@@ -33,7 +33,12 @@ print(anomalous_sequences)
 
 print('Read lines ...')
 with open('thunderbird_' + source + '/tbird2', encoding='latin-1') as log_file, open('templates/Thunderbird_templates.csv') as templates_file, open('thunderbird_' + source + '/parsed.csv', 'w+') as ext_file:
-    ext_file.write('id;event_type;seq_id;time;label;eventlabel\n')
+    header = 'id;event_type;seq_id;time;label;eventlabel'
+    if output_line:
+        header += ";line"
+    if output_params:
+        header += ";params"
+    ext_file.write(header + '\n')
     i = 1
     for line in templates_file:
         template = line.strip('\n').rstrip(' ').split('<*>') # template is string after first appearance of comma

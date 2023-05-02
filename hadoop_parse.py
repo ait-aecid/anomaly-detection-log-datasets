@@ -30,11 +30,16 @@ with open('templates/Hadoop_templates.csv') as templates_file:
         template = line.strip('\n').rstrip(' ').split('<*>')
         templates.append(template)
 
-skipped = 0
 with open(source + '/parsed.csv', 'w+') as ext_file:
-    ext_file.write('id;event_type;seq_id;time;label\n')
+    header = 'id;event_type;seq_id;time;label'
+    if output_line:
+        header += ";line"
+    if output_params:
+        header += ";params"
+    ext_file.write(header + '\n')
     cnt = 0
     for logfile in logfiles:
+        prev_timestamp = None
         with open(logfile) as logsource:
             logfile_parts = logfile.split('/')
             app_id = logfile_parts[-2]
@@ -54,18 +59,16 @@ with open(source + '/parsed.csv', 'w+') as ext_file:
                 cnt += 1
                 if cnt % 100000 == 0:
                     print(str(cnt) + ' lines processed')
-                if line.startswith('Container ') or line.startswith('java.io.IOException: ') or line.startswith('  ') or line.startswith('Caused by: ') or line.startswith('org.apache.hadoop.yarn.exceptions.YarnRuntimeException: ') or line.startswith('java.net.ConnectException: ') or line.startswith('java.net.NoRouteToHostException: ') or line.startswith('org.apache.avro.AvroTypeException: '):
-                    skipped += 1
-                    continue
-                line = line.strip('\n')
+                line = line.replace('\t', ' ').rstrip('\n')
                 template_id = None
                 line_parts = line.split(' ')
                 line_content_start = line.find(': ')
                 timestamp_missing = False
-                if line_content_start != -1:
+                if line.startswith("2015-10"):
                     line = line[(line_content_start + 2):]
                 else:
                     timestamp_missing = True
+                if line == "":
                     continue
                 found_params = []
                 for i, template in enumerate(templates):
@@ -91,7 +94,7 @@ with open(source + '/parsed.csv', 'w+') as ext_file:
                         if early_stopping:
                             break
                 if template_id is None:
-                    print('WARNING: No template matches ' + str(line))
+                    print('WARNING: No template matches "' + str(line) + '"')
                     print(line_parts)
                 try:
                     if timestamp_missing:
@@ -100,10 +103,10 @@ with open(source + '/parsed.csv', 'w+') as ext_file:
                         timestamp = datetime.datetime.strptime(line_parts[0] + ' ' + line_parts[1], '%Y-%m-%d %H:%M:%S,%f').replace(tzinfo=timezone.utc).timestamp() # timestamp format is 2015-10-17 18:16:56,078
                 except:
                     print(line)
+                prev_timestamp = timestamp
                 csv_line = str(cnt) + sep_csv + str(template_id) + sep_csv + str(app_id) + '/' + str(container_id) + sep_csv + str(timestamp) + sep_csv + str(label)
                 if output_line:
                     csv_line += sep_csv + str(line)
                 if output_params:
                     csv_line += sep_csv + sep_params.join(found_params)
                 ext_file.write(csv_line + '\n')
-    print('Skipped ' + str(skipped) + ' lines that do not have timestamps.')

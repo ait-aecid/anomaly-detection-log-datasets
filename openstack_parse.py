@@ -24,7 +24,12 @@ templates = []
 openstack_files = ['openstack_abnormal.log', 'openstack_normal1.log', 'openstack_normal2.log']
 
 with open(source + '/' + openstack_files[0]) as log_abnormal, open(source + '/' + openstack_files[1]) as log_normal1, open(source + '/' + openstack_files[2]) as log_normal2, open('templates/OpenStack_templates.csv') as templates_file, open(source + '/parsed.csv', 'w+') as ext_file:
-    ext_file.write('id;event_type;seq_id;time;label\n')
+    header = 'id;event_type;seq_id;time;label'
+    if output_line:
+        header += ";line"
+    if output_params:
+        header += ";params"
+    ext_file.write(header + '\n')
     for line in templates_file:
         template = line.strip('\n').rstrip(' ').split('<*>') # template is string after first appearance of comma
         templates.append(template)
