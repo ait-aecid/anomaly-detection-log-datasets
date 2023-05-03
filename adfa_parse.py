@@ -8,17 +8,10 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--data_dir", default="adfa_verazuo", help="path to input files", type=str, choices=['adfa_verazuo'])
 parser.add_argument("--sep_csv", default=";", help="separator for values used in output file", type=str)
-parser.add_argument("--sep_params", default="§", help="separator for params (if --output_params is set to True) used in output file", type=str)
 
 params = vars(parser.parse_args())
 source = params["data_dir"]
 sep_csv = params["sep_csv"]
-sep_params = params["sep_params"]
-
-# Special separators need to be used when line and/or params are written to file as they contain commas
-#sep_csv = ';'
-#sep_params = '§'
-#source = "verazuo"
 
 logfiles = [y for x in os.walk(source + '/ADFA-LD') for y in glob(os.path.join(x[0], '*.txt'))]
 
@@ -35,7 +28,7 @@ with open(source + '/parsed.csv', 'w+') as ext_file:
                 label = '_'.join(logfile_parts[3].split('_')[:-1])
             else:
                 label = 'Normal'
-            seq_id = logfile_parts[-1].replace('.txt', '')
+            seq_id = logfile_parts[-1].replace('.txt', '') # Use file name as sequence identifier
             for line in logsource:
                 for event_id in line.strip('\n ').split(' '):
                     cnt += 1

@@ -1,21 +1,29 @@
 import datetime
 from datetime import timezone
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--data_dir", default="thunderbird_cfdr", help="path to input files", type=str, choices=['thunderbird_cfdr'])
+parser.add_argument("--output_line", default="False", help="original line is provided in resulting csv", type=str)
+parser.add_argument("--output_params", default="False", help="extracted params are provided in resulting csv", type=str)
+parser.add_argument("--sep_csv", default=";", help="separator for values used in output file", type=str)
+parser.add_argument("--sep_params", default="§", help="separator for params (if --output_params is set to True) used in output file", type=str)
+
+params = vars(parser.parse_args())
+source = params["data_dir"]
+output_line = params["output_line"] == "True"
+output_params = params["output_params"] == "True"
+sep_csv = params["sep_csv"]
+sep_params = params["sep_params"]
 
 templates = {}
-output_line = False
-output_params = False
-source = "cfdr"
-# Special separators need to be used when line and/or params are written to file as they contain commas
-sep_csv = ';'
-sep_params = '§'
 service_names = set()
 machine_ids = set()
 
-events_allow_spaces = []
-
 print('Get labels ...')
 anomalous_sequences = set()
-with open('thunderbird_' + source + '/tbird2', encoding='latin-1') as log_file:
+with open(source + '/tbird2', encoding='latin-1') as log_file:
     cnt = 0
     for line in log_file:
         cnt += 1
@@ -29,10 +37,8 @@ with open('thunderbird_' + source + '/tbird2', encoding='latin-1') as log_file:
         if label != '-':
             anomalous_sequences.add(seq_id)
 
-print(anomalous_sequences)
-
 print('Read lines ...')
-with open('thunderbird_' + source + '/tbird2', encoding='latin-1') as log_file, open('templates/Thunderbird_templates.csv') as templates_file, open('thunderbird_' + source + '/parsed.csv', 'w+') as ext_file:
+with open(source + '/tbird2', encoding='latin-1') as log_file, open('templates/Thunderbird_templates.csv') as templates_file, open(source + '/parsed.csv', 'w+') as ext_file:
     header = 'id;event_type;seq_id;time;label;eventlabel'
     if output_line:
         header += ";line"
@@ -41,7 +47,7 @@ with open('thunderbird_' + source + '/tbird2', encoding='latin-1') as log_file, 
     ext_file.write(header + '\n')
     i = 1
     for line in templates_file:
-        template = line.strip('\n').rstrip(' ').split('<*>') # template is string after first appearance of comma
+        template = line.strip('\n').rstrip(' ').split('<*>')
         if tuple(template) not in templates:
             templates[tuple(template)] = i
             i += 1
@@ -88,7 +94,7 @@ with open('thunderbird_' + source + '/tbird2', encoding='latin-1') as log_file, 
                 match_chars = 0
                 for template_part in template:
                     pos = line.find(template_part, cur)
-                    if pos == -1 or (' ' in line[cur:pos]): # and i not in events_allow_spaces): # or (not starts_with_wildcard and cur == 0 and pos != 0) or (i == 0 and not line.split(' ')[-1].split(':')[0].isdigit()):
+                    if pos == -1 or (' ' in line[cur:pos]):
                         matches = [] # Reset matches so that it counts as no match at all
                         break
                     matches.append(pos)
@@ -96,17 +102,20 @@ with open('thunderbird_' + source + '/tbird2', encoding='latin-1') as log_file, 
                         params.append(line[cur:pos])
                     match_chars += len(template_part)
                     cur = pos + len(template_part)
-                if len(matches) > 0 and (line[cur:] == '' or template_part == ''): # and (' ' not in line[cur:]): # or i in events_allow_spaces): # and (line[cur:] == '' or template_part == ''): # and '.' not in line[cur:]: and sorted(matches) == matches
-                    template_id = templates[template] # + 1 # offset by 1 so that ID matches with template file
+                if len(matches) > 0 and (line[cur:] == '' or template_part == ''):
+                    template_id = templates[template]
                     if line[cur:] != '':
                         params.append(line[cur:])
                     if match_chars > max_match_chars:
+                        # If multiple templates match, select the one which has the highest number of non-wildcard characters in it as it is likely the most specific one
                         max_match_chars = match_chars
                         found_params = params # Store params found for matching template since params variable will be reset when checking next template
                         best_template_id = template_id
                         best_template_list_id = template_loop_cnt
             if best_template_id == -1:
                 print('WARNING: No template matches "' + str(line) + '"')
+            # Move best matching template to the front of templates list so that it is the first one checked in the next iteration; frequent templates should always be in the front of the list
+            # However, since all templates need to be checked, this does not improve performance. In future work, the templates should be sorted by length of characters and the first matching template be selected to improve efficiency.
             best_template = templates_list[best_template_list_id]
             del templates_list[best_template_list_id]
             templates_list = [best_template] + templates_list

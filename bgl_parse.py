@@ -41,7 +41,7 @@ with open(source + '/' + bgl_file) as log_file:
         if label != '-':
             anomalous_sequences.add(seq_id)
 
-events_allow_spaces = [82, 84, 172, 194, 293, 328, 362, 371, 397]
+events_allow_spaces = [82, 84, 172, 194, 293, 328, 362, 371, 397] # Line numbers in template file where <*> can represent multiple tokens separated by spaces.
 
 print('Read lines ...')
 with open(source + '/' + bgl_file) as log_file, open('templates/BGL_templates.csv') as templates_file, open(source + '/parsed.csv', 'w+') as ext_file:
@@ -52,7 +52,7 @@ with open(source + '/' + bgl_file) as log_file, open('templates/BGL_templates.cs
         header += ";params"
     ext_file.write(header + '\n')
     for line in templates_file:
-        template = line.strip('\n').rstrip(' ').split('<*>') # template is string after first appearance of comma
+        template = line.strip('\n').rstrip(' ').split('<*>')
         templates.append(template)
     cnt = 0
     prev_timestamp = None
@@ -104,10 +104,10 @@ with open(source + '/' + bgl_file) as log_file, open('templates/BGL_templates.cs
                 if line[cur:pos] != '':
                     params.append(line[cur:pos])
                 cur = pos + len(template_part)
-            if len(matches) > 0 and sorted(matches) == matches and (' ' not in line[cur:] or i in events_allow_spaces) and (line[cur:] == '' or template_part == ''): # and '.' not in line[cur:]:
+            if len(matches) > 0 and sorted(matches) == matches and (' ' not in line[cur:] or i in events_allow_spaces) and (line[cur:] == '' or template_part == ''):
                 if template_id is not None:
                     print('WARNING: Templates ' + str(template_id) + ' and ' + str(i + 1) + ' both match line ' + line)
-                template_id = i + 1 # offset by 1 so that ID matches with template file
+                template_id = i + 1 # offset by 1 so that ID matches with line in template file
                 if line[cur:] != '':
                     params.append(line[cur:])
                 found_params = params # Store params found for matching template since params variable will be reset when checking next template

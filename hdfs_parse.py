@@ -51,7 +51,7 @@ with open(source + '/' + hdfs_file) as log_file, open('templates/HDFS_templates.
         header += ";params"
     ext_file.write(header + '\n')
     for line in templates_file:
-        template = line.strip('\n').rstrip(' ').strip('<*>').split('<*>') # template is string after first appearance of comma
+        template = line.strip('\n').rstrip(' ').strip('<*>').split('<*>')
         templates.append(template)
     cnt = 0
     prev_timestamp = None
