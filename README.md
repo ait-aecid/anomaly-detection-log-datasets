@@ -51,7 +51,7 @@ wget http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcd
 gunzip tbird2.gz
 ```
 
-Fore more information on this data set, see
+For more information on this data set, see
  * Oliner, A., & Stearley, J. (2007, June). What supercomputers say: A study of five system logs. In 37th annual IEEE/IFIP international conference on dependable systems and networks (DSN'07) (pp. 575-584). IEEE.
 
 ### ADFA
