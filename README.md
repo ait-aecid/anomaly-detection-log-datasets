@@ -4,7 +4,7 @@
 
 ### HDFS
 
-```
+```shell
 wget http://iiis.tsinghua.edu.cn/~weixu/demobuild.zip
 unzip demobuild.zip
 gunzip -c data/online1/lg/sorted.log.gz > sorted.log
@@ -15,7 +15,7 @@ Fore more information on this data set, see
 
 ### BGL
 
-```
+```shell
 wget http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcdn.com/hpc4/bgl2.gz
 gunzip bgl2.gz
 ```
@@ -25,7 +25,7 @@ Fore more information on this data set, see
 
 ### OpenStack
 
-```
+```shell
 wget https://zenodo.org/record/3227177/files/OpenStack.tar.gz
 tar -xvf OpenStack.tar.gz
 ```
@@ -35,7 +35,7 @@ Fore more information on this data set, see
 
 ### Hadoop
 
-```
+```shell
 wget https://zenodo.org/record/3227177/files/Hadoop.tar.gz
 mkdir logs
 tar -xvf Hadoop.tar.gz -C logs
@@ -46,7 +46,7 @@ For more information on this data set, see
 
 ### Thunderbird
 
-```
+```shell
 wget http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcdn.com/hpc4/tbird2.gz
 gunzip tbird2.gz
 ```
@@ -56,7 +56,7 @@ Fore more information on this data set, see
 
 ### ADFA
 
-```
+```shell
 git clone https://github.com/verazuo/a-labelled-version-of-the-ADFA-LD-dataset
 unzip a-labelled-version-of-the-ADFA-LD-dataset/ADFA-LD.zip -d .
 ```
@@ -66,17 +66,19 @@ For more information on this data set, see
 
 ## Parsing the data sets
 
-To parse the data, run the respective `<dataset>_parse.py` script. The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template.
+To parse the data, run the respective `<dataset>_parse.py` script. For example, use the following command to parse the HDFS log data set:
 
-```
+```shell
 python3 hdfs_parse.py
 ```
+
+The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template. The Thunderbird log data set is an exception; due to the complexity and length of the data set, we used our [aecid-incremental-clustering](https://github.com/ait-aecid/aecid-incremental-clustering) and [aecid-parsergenerator](https://github.com/ait-aecid/aecid-parsergenerator) to generate event templates, however, some of them are overly specific or generic and log lines may match multiple events.
 
 ## Sampling the data sets
   
 To generate training and test files, run the sample.py script and specify the directory of the log data to be sampled. Moreover, the sampling ratio can be specified. For example, use the following command to sample the HDFS log data set so that the training file comprises 1% of the normal events.
   
-```
+```shell
 python3 sample.py --data_dir hdfs_xu --train_ratio 0.01
 ```
   
