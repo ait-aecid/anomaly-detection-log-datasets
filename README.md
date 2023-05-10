@@ -81,6 +81,8 @@ To generate training and test files, run the sample.py script and specify the di
 ```shell
 python3 sample.py --data_dir hdfs_xu --train_ratio 0.01
 ```
+
+This will generate the files `<dataset>_train`, `<dataset>_test_normal`, and `<dataset>_test_abnormal` in the respective directory. In case that fine-granular anomaly labels are available, the sampling script will also generate `<dataset>_test_abnormal_<anomaly>`, which contain only those sequences that correspond to the respective anomaly class.
   
 ## Citation
 
