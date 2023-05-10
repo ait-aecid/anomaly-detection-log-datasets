@@ -66,7 +66,7 @@ For more information on this data set, see
 
 ## Parsing the data sets
 
-To parse the data, run the respective <dataset>_parse.py script. The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template.
+To parse the data, run the respective `<dataset>_parse.py` script. The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template.
 
 ```
 python3 hdfs_parse.py
