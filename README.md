@@ -5,6 +5,7 @@
 ### HDFS
 
 ```shell
+cd hdfs_xu/
 wget http://iiis.tsinghua.edu.cn/~weixu/demobuild.zip
 unzip demobuild.zip
 gunzip -c data/online1/lg/sorted.log.gz > sorted.log
@@ -16,6 +17,7 @@ Fore more information on this data set, see
 ### BGL
 
 ```shell
+cd bgl_cfdr/
 wget http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcdn.com/hpc4/bgl2.gz
 gunzip bgl2.gz
 ```
@@ -26,6 +28,7 @@ Fore more information on this data set, see
 ### OpenStack
 
 ```shell
+cd openstack_loghub/
 wget https://zenodo.org/record/3227177/files/OpenStack.tar.gz
 tar -xvf OpenStack.tar.gz
 ```
@@ -36,6 +39,7 @@ Fore more information on this data set, see
 ### Hadoop
 
 ```shell
+cd hadoop_loghub/
 wget https://zenodo.org/record/3227177/files/Hadoop.tar.gz
 mkdir logs
 tar -xvf Hadoop.tar.gz -C logs
@@ -47,6 +51,7 @@ For more information on this data set, see
 ### Thunderbird
 
 ```shell
+cd thunderbird_cfdr/
 wget http://0b4af6cdc2f0c5998459-c0245c5c937c5dedcca3f1764ecc9b2f.r43.cf2.rackcdn.com/hpc4/tbird2.gz
 gunzip tbird2.gz
 ```
@@ -57,6 +62,7 @@ For more information on this data set, see
 ### ADFA
 
 ```shell
+cd adfa_verazuo/
 git clone https://github.com/verazuo/a-labelled-version-of-the-ADFA-LD-dataset
 unzip a-labelled-version-of-the-ADFA-LD-dataset/ADFA-LD.zip -d .
 ```
