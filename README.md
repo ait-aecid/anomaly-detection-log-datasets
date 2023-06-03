@@ -1,5 +1,9 @@
 # anomaly-detection-log-datasets
 
+This repository contains scripts to analyze publicly available log data sets that are commonly used to evaluate sequence-based anomaly detection techniques. The following sections show how to get the data sets, parse and group them into sequences of event types, and apply some basic anomaly detection techniques. If you use any of the resources provided in this repository, please cite the publications stated at the end of this ReadMe.
+
+The repository comes with some pre-processed samples in each data set directory, which allow to get started without having to download all the data sets. These files are named `<dataset>_train` (which contains approximately 1% of all normal log sequences for training), `<dataset>_test_normal (which contains the remaining normal log sequences for testing), and <dataset>_test_abnormal (which contains all anomalous log sequences).
+
 ## Getting the data sets
 
 ### HDFS
@@ -190,6 +194,218 @@ Common anomalous count vectors:
 3225: (('22', 1), ('5', 2), ('7', 1))
 3182: (('11', 3), ('20', 1), ('21', 3), ('22', 1), ('23', 3), ('26', 3), ('30', 3), ('5', 3), ('9', 3))
 2950: (('22', 1), ('5', 1))
+```
+
+## Evaluation of anomaly detection techniques
+
+### Sequence-based detection
+
+The evaluate script provides some basic anomaly detection mechanisms, in particular, detection based on new event types, sequence lengths, event count vectors, n-grams, edit distance, and event inter-arrival times. For timing-based detection it is necessary to download the data sets and run the respective `<dataset>_parse.py` script, because timestamp information is not available in the pre-processed logs. If the `parsed.csv` file is available, the time-based detector can be enabled by setting `--time_detection True`. The following output shows the results of running the evaluation script on the HDFS logs, where a maximum F1 score of 95.76% is achieved by detection based on count vectors.
+
+```shell
+python3 evaluate.py --data_dir hdfs_xu
+
+New event detection
+ Time=0.45340991020202637
+ TP=6065
+ FP=95
+ TN=552545
+ FN=10773
+ TPR=R=0.36019717306093363
+ FPR=0.0001719021424435437
+ TNR=0.9998280978575564
+ P=0.984577922077922
+ F1=0.5274371684494303
+ ACC=0.980915856275396
+
+Sequence length detection
+ Time=0.11639928817749023
+ TP=6232
+ FP=56
+ TN=552584
+ FN=10606
+ TPR=R=0.37011521558379856
+ FPR=0.0001013317892298784
+ TNR=0.9998986682107701
+ P=0.9910941475826972
+ F1=0.5389604773847617
+ ACC=0.9812775910570734
+
+New events + sequence length detection
+ Time=0.5698091983795166
+ TP=9034
+ FP=148
+ TN=552492
+ FN=7804
+ TPR=R=0.5365245278536643
+ FPR=0.00026780544296467864
+ TNR=0.9997321945570353
+ P=0.9838815072968852
+ F1=0.6943889315910838
+ ACC=0.9860363350296236
+
+Count vector clustering
+ Threshold=0.06
+ Time=381.79397344589233
+ TP=16674
+ FP=1373
+ TN=551267
+ FN=164
+ TPR=R=0.9902601259056895
+ FPR=0.0024844383323682686
+ TNR=0.9975155616676318
+ P=0.9239208732753367
+ F1=0.9559409488318762
+ ACC=0.9973010370901071
+
+Count vector clustering with idf
+ Threshold=0.11
+ Time=449.16042852401733
+ TP=16646
+ FP=1283
+ TN=551357
+ FN=192
+ TPR=R=0.9885972205725145
+ FPR=0.002321583671105964
+ TNR=0.9976784163288941
+ P=0.9284399576105751
+ F1=0.9575747116518538
+ ACC=0.9974099087234274
+
+2-gram detection
+ Threshold=0.02
+ Time=5.069429636001587
+ TP=13535
+ FP=1311
+ TN=551329
+ FN=3303
+ TPR=R=0.8038365601615394
+ FPR=0.002372249565720903
+ TNR=0.9976277504342791
+ P=0.9116933854236832
+ F1=0.8543744476707487
+ ACC=0.9918978432880639
+
+3-gram detection
+ Threshold=0.02
+ Time=6.626951217651367
+ TP=15715
+ FP=3273
+ TN=549367
+ FN=1123
+ TPR=R=0.9333056182444471
+ FPR=0.005922481181239143
+ TNR=0.9940775188187608
+ P=0.8276279755635138
+ F1=0.8772958186791715
+ ACC=0.9922806499987709
+
+10-gram detection
+ Time=5.448755264282227
+ TP=16838
+ FP=552640
+ TN=0
+ FN=0
+ TPR=R=1.0
+ FPR=1.0
+ TNR=0.0
+ P=0.029567428416901093
+ F1=0.05743660415202723
+ ACC=0.029567428416901093
+
+2-gram + sequence length detection
+ Time=5.185828924179077
+ TP=15183
+ FP=1358
+ TN=551282
+ FN=1655
+ TPR=R=0.9017104169141228
+ FPR=0.0024572958888245513
+ TNR=0.9975427041111754
+ P=0.9179009733389759
+ F1=0.9097336648791157
+ ACC=0.9947091898194487
+
+New events + sequence length detection + count vector clustering
+ Threshold=0.06
+ Time=382.36378264427185
+ TP=16705
+ FP=1381
+ TN=551259
+ FN=133
+ TPR=R=0.9921011996674189
+ FPR=0.0024989143022582515
+ TNR=0.9975010856977418
+ P=0.9236425964834679
+ F1=0.9566487229412438
+ ACC=0.9973414249540807
+
+New events + sequence length detection + count vector clustering with idf
+ Threshold=0.11
+ Time=449.73023772239685
+ TP=16659
+ FP=1296
+ TN=551344
+ FN=179
+ TPR=R=0.9893692837629172
+ FPR=0.002345107122177186
+ TNR=0.9976548928778228
+ P=0.9278195488721804
+ F1=0.9576064150834938
+ ACC=0.9974099087234274
+
+Edit distance detection
+ Threshold=0.19
+ Time=47.86025643348694
+ TP=9699
+ FP=543
+ TN=552097
+ FN=7139
+ TPR=R=0.5760185295165696
+ FPR=0.0009825564562825709
+ TNR=0.9990174435437175
+ P=0.9469830111306385
+ F1=0.7163220088626292
+ ACC=0.9865104534327929
+
+New events + sequence length detection + edit distance
+ Threshold=0.21
+ Time=48.430065631866455
+ TP=12231
+ FP=516
+ TN=552124
+ FN=4607
+ TPR=R=0.726392683216534
+ FPR=0.0009337000579038796
+ TNR=0.9990662999420962
+ P=0.9595198870322429
+ F1=0.8268379246239649
+ ACC=0.9910040422983856
+```
+
+### Event-based detection
+
+Event-based detection requires that the data sets have been downloaded and the parsed.csv files have been created. Then, the following command can be used to evaluate event-based detection.
+
+```shell
+python3 evaluate_events.py --data_dir bgl_loghub
+Read in parsed events ...
+Randomly selecting 43995 events from 4399503 normal events for training
+Testing 4355508 normal events
+Testing 348460 anomalous events
+
+New events
+ Time=-1
+ TP=348284
+ FP=4327
+ TN=4351181
+ FN=176
+ TPR=R=0.9994949205073753
+ FPR=0.0009934547244546447
+ TNR=0.9990065452755453
+ P=0.9877286868532178
+ F1=0.9935769700929007
+ ACC=0.9990427230797488
 ```
 
 ## Citation
