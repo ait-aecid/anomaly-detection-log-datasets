@@ -12,7 +12,7 @@ There are three versions of this data set: The original logs from Wei Xu et al.,
 
 #### Original logs from Wei Xu et al.
 
-The original logs can be retrieved from (Wei Xu's website)[http://people.iiis.tsinghua.edu.cn/~weixu/sospdata.html] as follows.
+The original logs can be retrieved from [Wei Xu's website](http://people.iiis.tsinghua.edu.cn/~weixu/sospdata.html) as follows.
 
 ```shell
 cd hdfs_xu/
@@ -26,7 +26,7 @@ Fore more information on this data set, see
 
 #### Loghub
 
-Another version of this data set is provided by (Loghub)[https://github.com/logpai/loghub]. Note that some lines appear to be missing from the original logs.
+Another version of this data set is provided by [Loghub](https://github.com/logpai/loghub). Note that some lines appear to be missing from the original logs.
 
 ```shell
 cd hdfs_loghub/
@@ -39,7 +39,7 @@ For more information on Loghub, see
 
 #### LogDeep
 
-A pre-processed version of the data set is provided in the (LogDeep repository)[https://github.com/donglee-afar/logdeep]. Note that timestamps and sequence identifiers are missing from this data set.
+A pre-processed version of the data set is provided in the [LogDeep repository](https://github.com/donglee-afar/logdeep). Note that timestamps and sequence identifiers are missing from this data set.
 
 ```shell
 cd hdfs_logdeep/
@@ -53,7 +53,7 @@ There are two versions of this data set: CFDR and Loghub.
 
 #### CFDR
 
-The original logs from the (Computer Failure Data Repository)[https://www.usenix.org/cfdr] can be retrieved as follows.
+The original logs from the [Computer Failure Data Repository](https://www.usenix.org/cfdr) can be retrieved as follows.
 
 ```shell
 cd bgl_cfdr/
@@ -66,7 +66,7 @@ Fore more information on this data set, see
 
 #### Loghub
 
-An alternative version of this data set is provided by (Loghub)[https://github.com/logpai/loghub]. Note that some logs have different labels in this data set.
+An alternative version of this data set is provided by [Loghub](https://github.com/logpai/loghub). Note that some logs have different labels in this data set.
 
 ```shell
 cd bgl_loghub/
@@ -79,7 +79,7 @@ For more information on Loghub, see
 
 ### OpenStack
 
-The original OpenStack logs are not available anymore; however, (Loghub)[https://github.com/logpai/loghub] provides a version of this data set.
+The original OpenStack logs are not available anymore; however, [Loghub](https://github.com/logpai/loghub) provides a version of this data set.
 
 ```shell
 cd openstack_loghub/
@@ -93,7 +93,7 @@ Fore more information on this data set, see
 
 ### Hadoop
 
-The original Hadoop logs are not available anymore; however, (Loghub)[https://github.com/logpai/loghub] provides a version of this data set.
+The original Hadoop logs are not available anymore; however, [Loghub](https://github.com/logpai/loghub) provides a version of this data set.
 
 ```shell
 cd hadoop_loghub/
@@ -108,7 +108,7 @@ For more information on this data set, see
 
 ### Thunderbird
 
-The original logs from the (Computer Failure Data Repository)[https://www.usenix.org/cfdr] can be retrieved as follows.
+The original logs from the [Computer Failure Data Repository](https://www.usenix.org/cfdr) can be retrieved as follows.
 
 ```shell
 cd thunderbird_cfdr/
@@ -121,7 +121,7 @@ For more information on this data set, see
 
 ### ADFA
 
-The (verazuo repository)[https://github.com/verazuo/a-labelled-version-of-the-ADFA-LD-dataset] provides a labeled version of this data set.
+The [verazuo repository](https://github.com/verazuo/a-labelled-version-of-the-ADFA-LD-dataset) provides a labeled version of this data set.
 
 ```shell
 cd adfa_verazuo/
