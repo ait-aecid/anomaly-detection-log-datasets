@@ -2,7 +2,7 @@
 
 This repository contains scripts to analyze publicly available log data sets that are commonly used to evaluate sequence-based anomaly detection techniques. The following sections show how to get the data sets, parse and group them into sequences of event types, and apply some basic anomaly detection techniques. If you use any of the resources provided in this repository, please cite the publications stated at the end of this ReadMe.
 
-The repository comes with some pre-processed samples in each data set directory, which allow to get started without having to download all the data sets. These files are named `<dataset>_train` (which contains approximately 1% of all normal log sequences for training), `<dataset>_test_normal (which contains the remaining normal log sequences for testing), and <dataset>_test_abnormal (which contains all anomalous log sequences).
+The repository comes with some pre-processed samples in each data set directory, which allow to get started without having to download all the data sets. These files are named `<dataset>_train` (which contains approximately 1% of all normal log sequences for training), `<dataset>_test_normal` (which contains the remaining normal log sequences for testing), and `<dataset>_test_abnormal` (which contains all anomalous log sequences).
 
 ## Getting the data sets
 
