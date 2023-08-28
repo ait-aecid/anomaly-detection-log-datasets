@@ -39,11 +39,11 @@ with open(source + '/tbird2', encoding='latin-1') as log_file:
 
 print('Read lines ...')
 with open(source + '/tbird2', encoding='latin-1') as log_file, open('templates/Thunderbird_templates.csv') as templates_file, open(source + '/parsed.csv', 'w+') as ext_file:
-    header = 'id;event_type;seq_id;time;label;eventlabel'
+    header = 'id' + sep_csv + 'event_type' + sep_csv + 'seq_id' + sep_csv + 'time' + sep_csv + 'label' + sep_csv + 'eventlabel'
     if output_line:
-        header += ";line"
+        header += sep_csv + "line"
     if output_params:
-        header += ";params"
+        header += sep_csv + "params"
     ext_file.write(header + '\n')
     i = 1
     for line in templates_file:

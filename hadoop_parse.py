@@ -31,11 +31,11 @@ with open('templates/Hadoop_templates.csv') as templates_file:
         templates.append(template)
 
 with open(source + '/parsed.csv', 'w+') as ext_file:
-    header = 'id;event_type;seq_id;time;label'
+    header = 'id' + sep_csv + 'event_type' + sep_csv + 'seq_id' + sep_csv + 'time' + sep_csv + 'label'
     if output_line:
-        header += ";line"
+        header += sep_csv + "line"
     if output_params:
-        header += ";params"
+        header += sep_csv + "params"
     ext_file.write(header + '\n')
     cnt = 0
     for logfile in logfiles:
