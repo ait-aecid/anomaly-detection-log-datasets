@@ -1,12 +1,11 @@
 import math
 import argparse
-import editdistance
-import argparse
+import Levenshtein
 import time
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['hdfs_xu', 'hdfs_logdeep', 'hdfs_logdeep2', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'hadoop_loghub', 'thunderbird_loghub', 'adfa_verazuo'])
+parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['hdfs_xu', 'hdfs_logdeep', 'hdfs_logdeep2', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'hadoop_loghub', 'thunderbird_loghub', 'adfa_verazuo', 'awsctd_djpasco'])
 parser.add_argument("--time_detection", default="False", help="carry out detection based on interarrival times (requires parsed.csv file)", type=str)
 
 params = vars(parser.parse_args())
@@ -63,8 +62,24 @@ def iterate_threshold(dists):
 def test_cluster_count_vectors(train_vectors, test_vectors, normal_seq_ids, abnormal_seq_ids, normalize, idf, idf_weights):
     # Compute minimum count vector distance for every test vector
     dists = {}
+    # No need to compute similarity of the same test vectors multiple times
+    known_dists = {}
+    # No need to compare with the same train vectors multiple times
+    train_vectors_set = set()
+    for train_vector in train_vectors:
+        train_vector_tuple = tuple(sorted(list(train_vector.items())))
+        train_vectors_set.add(train_vector_tuple)
+    train_vectors_reduced = []
+    for train_vector_tuple in train_vectors_set:
+        train_vectors_reduced.append(dict(train_vector_tuple))
     for seq_id, test_vector in test_vectors.items():
-        dists[seq_id] = check_count_vector(train_vectors, test_vector, normalize, idf, idf_weights)
+        test_vector_tuple = tuple(sorted(list(test_vector.items())))
+        if test_vector_tuple in known_dists:
+            dist = known_dists[test_vector_tuple]
+        else:
+            dist = check_count_vector(train_vectors_reduced, test_vector, normalize, idf, idf_weights)
+            known_dists[test_vector_tuple] = dist
+        dists[seq_id] = dist
     # Return detected samples for various thresholds
     return iterate_threshold(dists)
 
@@ -86,19 +101,28 @@ def test_edit_distance(train_sequences, test_sequences):
     dists = {}
     dists_by_seq = {} # No need to process the same abnormal sequences multiple times; just remember the dist already computed
     train_sequence_set = set() # No need to compare with the same normal sequence multiple times; remove redundant ones
+    train_sequence_unique = []
     for seq_id, train_sequence in train_sequences.items():
         train_sequence_tuple = tuple(train_sequence)
         train_sequence_set.add(train_sequence_tuple)
+    train_sequence_unique = list(train_sequence_set) # Transform set to list so that sequences can be reordered
     for seq_id, test_sequence in test_sequences.items():
         test_sequence_tuple = tuple(test_sequence)
         if test_sequence_tuple in dists_by_seq:
             dists[seq_id] = dists_by_seq[test_sequence_tuple]
         else:
             min_dist = 2 # initial value for finding minimum distance (distance is normalized in range 0 to 1)
-            for normal_event_sequence in train_sequence_set:
-                min_dist = min(min_dist, editdistance.eval(normal_event_sequence, test_sequence) / max(len(normal_event_sequence), len(test_sequence)))
+            for normal_event_sequence in train_sequence_unique:
+                norm_fact = max(len(normal_event_sequence), len(test_sequence))
+                dist = Levenshtein.distance(normal_event_sequence, test_sequence, score_cutoff=math.floor(norm_fact * min_dist)) / norm_fact
+                if dist < min_dist:
+                    min_dist = dist
+                    best_matching_train_seq = normal_event_sequence
             dists[seq_id] = min_dist
             dists_by_seq[test_sequence_tuple] = min_dist
+            # Move sequence with highest similarity to the front of list as it is likely a good match for the following sequences as well
+            train_sequence_unique.remove(best_matching_train_seq)
+            train_sequence_unique = [best_matching_train_seq] + train_sequence_unique
     # Return detected samples for various thresholds
     return iterate_threshold(dists)
 
