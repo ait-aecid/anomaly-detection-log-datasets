@@ -1,0 +1,3 @@
+Levenshtein==0.21.1
+scipy==1.8.1
+pylcs==0.0.8
