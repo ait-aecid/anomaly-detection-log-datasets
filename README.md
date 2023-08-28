@@ -132,6 +132,19 @@ unzip a-labelled-version-of-the-ADFA-LD-dataset/ADFA-LD.zip -d .
 For more information on this data set, see
  * Creech, G., & Hu, J. (2013, April). Generation of a new IDS test dataset: Time to retire the KDD collection. In 2013 IEEE Wireless Communications and Networking Conference (WCNC) (pp. 4487-4492). IEEE.
 
+### AWSCTD
+
+The [DjPasco repository](https://github.com/DjPasco/AWSCTD) provides a labeled version of this data set.
+
+```shell
+cd awsctd_djpasco/
+git clone https://github.com/DjPasco/AWSCTD.git
+p7zip -d AWSCTD/CSV.7z
+```
+
+For more information on this data set, see
+ * Čeponis, Dainius, and Nikolaj Goranin. Towards a robust method of dataset generation of malicious activity for anomaly-based HIDS training and presentation of AWSCTD dataset. Baltic Journal of Modern Computing 6, no. 3 (2018): 217-234.
+
 ## Parsing the data sets
 
 To parse the data, run the respective `<dataset>_parse.py` script. For example, use the following command to parse the HDFS log data set:

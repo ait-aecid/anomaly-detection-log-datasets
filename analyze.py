@@ -4,7 +4,7 @@ from datetime import datetime
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['hdfs_logdeep', 'hdfs_xu', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'hadoop_loghub', 'thunderbird_cfdr', 'adfa_verazuo'])
+parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['hdfs_logdeep', 'hdfs_xu', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'hadoop_loghub', 'thunderbird_cfdr', 'adfa_verazuo', 'awsctd_djpasco'])
 parser.add_argument("--show_samples", default=10, help="number of samples shown in output", type=int)
 
 params = vars(parser.parse_args())
