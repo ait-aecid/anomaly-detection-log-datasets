@@ -1,3 +1,4 @@
 Levenshtein==0.21.1
+numpy==1.22.4
 scipy==1.8.1
 pylcs==0.0.8

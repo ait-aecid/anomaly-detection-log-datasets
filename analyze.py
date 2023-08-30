@@ -1,6 +1,7 @@
 from collections import Counter
 import argparse
 from datetime import datetime
+import numpy as np
 
 parser = argparse.ArgumentParser()
 
@@ -158,3 +159,82 @@ with open(source + '/' + filename + '_train') as train, open(source + '/' + file
         if i > show_samples:
             break
         print(str(info) + ': ' + str(events))
+    predict_total = {}
+    predict_normal = {}
+    for seq_id, event_list in sequences_extracted.items():
+        prev_event = -1 # Also the first event of sequence can be predicted
+        events = event_list + [-1] # Also the end of the sequence can be predicted by the last event
+        for event in events:
+            if prev_event in predict_total:
+                predict_total[prev_event].add(event)
+            else:
+                predict_total[prev_event] = set([event])
+            if labels[seq_id] == 0:
+                if prev_event in predict_normal:
+                    predict_normal[prev_event].add(event)
+                else:
+                    predict_normal[prev_event] = set([event])
+            prev_event = event
+    avg_following_events = []
+    for vals in predict_normal.values():
+        avg_following_events.append(len(vals))
+    print('Number of distinct events following any event in normal sequences: Average: ' + str(round(np.mean(avg_following_events), 2)) + ' Stddev: ' + str(round(np.std(avg_following_events), 2)))
+    avg_following_events = []
+    for vals in predict_total.values():
+        avg_following_events.append(len(vals))
+    print('Number of distinct events following any event in all sequences: Average: ' + str(round(np.mean(avg_following_events), 2)) + ' Stddev: ' + str(round(np.std(avg_following_events), 2)))
+    unique_chars_list = list(set(list(event_types_normal) + list(event_types_anomalous)))
+    codes = {(unique_chars_list[i],): i for i in range(len(unique_chars_list))} # Holds all events and their index as values; will be updated with codes later on
+    unencoded_bits_per_event = np.ceil(np.log2(len(unique_chars_list))) # Solves number of required bits to represent all events, 2^bits >= #chars
+    total_bits_uncompressed = 0
+    total_bits_compressed = 0
+    codes_counter = len(codes)
+    for sequence in sequences_extracted.values():
+        w = tuple()
+        encoded = []
+        for c in sequence:
+            total_bits_uncompressed += unencoded_bits_per_event # Increase bit counter for each event
+            wc = w + (c,)
+            if wc in codes:
+                # Current word is known; next word will be current word plus following event
+                w = wc
+            else:
+                # Current word is not known; update codes, set current word as part of the encoded sequence, and set next word to be only current event
+                encoded.append(codes[w])
+                # Computes the number of bits based on the index which is incremented for each new code; must be at least the number of bits required to represent a single event
+                # For example, subsequence stored at index 30 can be represented with 5 bits (because 2^5=32), but for subsequence at index 34 there are already 6 bits needed; see https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
+                total_bits_compressed += np.ceil(np.log2(max(len(unique_chars_list), codes[w])))
+                codes[wc] = codes_counter
+                codes_counter += 1
+                w = (c,)
+        if w:
+            # If subsequence remains, add it now
+            encoded.append(codes[w])
+            total_bits_compressed += np.ceil(np.log2(max(len(unique_chars_list), codes[w])))
+    print("Number of bits to represent all sequences before encoding: " + str(total_bits_uncompressed))
+    print("Number of bits to represent all sequences after encoding: " + str(total_bits_compressed))
+    print("Compression ratio: " + str(round(100 * (1 - total_bits_compressed / total_bits_uncompressed), 2)) + "%")
+    print("Entropy of ngrams:")
+    n_max = 4
+    for n in range(1, n_max):
+        # Count all n-grams
+        ngrams = {}
+        for seq_id, seq in sequences_extracted.items():
+            for i in range(len(seq) - n + 1):
+                ngram = tuple(seq[i:(i+n)])
+                if ngram in ngrams:
+                    ngrams[ngram] += 1
+                else:
+                    ngrams[ngram] = 1
+        total = sum(ngrams.values())
+        h = 0 # Entropy
+        h_norm = 0 # Normalized entropy
+        i = 0
+        for tup, count in ngrams.items():
+            i += 1
+            p = count / total # Relative frequency (probability) of this ngram
+            h -= p * np.log2(p)
+            norm = np.log2(len(ngrams))
+            if norm != 0:
+                h_norm -= p * np.log2(p) / norm
+        print(" - n=" + str(n) + ': Number of ' + str(n) + '-grams: ' + str(len(ngrams)) + ', H=' + str(round(h, 2)) + ', H_norm=' + str(round(h_norm, 2)))

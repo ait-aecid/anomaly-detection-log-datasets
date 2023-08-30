@@ -207,6 +207,15 @@ Common anomalous count vectors:
 3225: (('22', 1), ('5', 2), ('7', 1))
 3182: (('11', 3), ('20', 1), ('21', 3), ('22', 1), ('23', 3), ('26', 3), ('30', 3), ('5', 3), ('9', 3))
 2950: (('22', 1), ('5', 1))
+Number of distinct events following any event in normal sequences: Average: 8.86 Stddev: 4.91
+Number of distinct events following any event in all sequences: Average: 10.03 Stddev: 6.96
+Number of bits to represent all sequences before encoding: 75485934.0
+Number of bits to represent all sequences after encoding: 7931677.0
+Compression ratio: 89.49%
+Entropy of ngrams:
+ - n=1: Number of 1-grams: 33, H=3.24, H_norm=0.64
+ - n=2: Number of 2-grams: 319, H=4.38, H_norm=0.53
+ - n=3: Number of 3-grams: 1257, H=5.41, H_norm=0.53
 ```
 
 ## Evaluation of anomaly detection techniques
