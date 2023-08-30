@@ -228,7 +228,7 @@ The evaluate script provides some basic anomaly detection mechanisms, in particu
 python3 evaluate.py --data_dir hdfs_xu
 
 New event detection
- Time=0.45340991020202637
+ Time=0.4524719715118408
  TP=6065
  FP=95
  TN=552545
@@ -241,7 +241,7 @@ New event detection
  ACC=0.980915856275396
 
 Sequence length detection
- Time=0.11639928817749023
+ Time=0.11102008819580078
  TP=6232
  FP=56
  TN=552584
@@ -254,7 +254,7 @@ Sequence length detection
  ACC=0.9812775910570734
 
 New events + sequence length detection
- Time=0.5698091983795166
+ Time=0.5634920597076416
  TP=9034
  FP=148
  TN=552492
@@ -268,7 +268,7 @@ New events + sequence length detection
 
 Count vector clustering
  Threshold=0.06
- Time=381.79397344589233
+ Time=3.2528252601623535
  TP=16674
  FP=1373
  TN=551267
@@ -282,7 +282,7 @@ Count vector clustering
 
 Count vector clustering with idf
  Threshold=0.11
- Time=449.16042852401733
+ Time=3.307997226715088
  TP=16646
  FP=1283
  TN=551357
@@ -296,7 +296,7 @@ Count vector clustering with idf
 
 2-gram detection
  Threshold=0.02
- Time=5.069429636001587
+ Time=4.987187147140503
  TP=13535
  FP=1311
  TN=551329
@@ -310,7 +310,7 @@ Count vector clustering with idf
 
 3-gram detection
  Threshold=0.02
- Time=6.626951217651367
+ Time=5.164008378982544
  TP=15715
  FP=3273
  TN=549367
@@ -323,7 +323,7 @@ Count vector clustering with idf
  ACC=0.9922806499987709
 
 10-gram detection
- Time=5.448755264282227
+ Time=4.9592812061309814
  TP=16838
  FP=552640
  TN=0
@@ -336,7 +336,7 @@ Count vector clustering with idf
  ACC=0.029567428416901093
 
 2-gram + sequence length detection
- Time=5.185828924179077
+ Time=5.098207235336304
  TP=15183
  FP=1358
  TN=551282
@@ -350,7 +350,7 @@ Count vector clustering with idf
 
 New events + sequence length detection + count vector clustering
  Threshold=0.06
- Time=382.36378264427185
+ Time=3.816317319869995
  TP=16705
  FP=1381
  TN=551259
@@ -364,7 +364,7 @@ New events + sequence length detection + count vector clustering
 
 New events + sequence length detection + count vector clustering with idf
  Threshold=0.11
- Time=449.73023772239685
+ Time=3.8714892864227295
  TP=16659
  FP=1296
  TN=551344
@@ -378,7 +378,7 @@ New events + sequence length detection + count vector clustering with idf
 
 Edit distance detection
  Threshold=0.19
- Time=47.86025643348694
+ Time=41.20497465133667
  TP=9699
  FP=543
  TN=552097
@@ -392,7 +392,7 @@ Edit distance detection
 
 New events + sequence length detection + edit distance
  Threshold=0.21
- Time=48.430065631866455
+ Time=41.76846671104431
  TP=12231
  FP=516
  TN=552124
