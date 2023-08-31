@@ -189,6 +189,7 @@ with open(source + '/' + filename + '_train') as train, open(source + '/' + file
     total_bits_uncompressed = 0
     total_bits_compressed = 0
     codes_counter = len(codes)
+    # For more information on the Lempel-Ziv-Welsh Compression and the source of this code, see https://asecuritysite.com/comms/lz
     for sequence in sequences_extracted.values():
         w = tuple()
         encoded = []
