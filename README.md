@@ -156,14 +156,28 @@ python3 hdfs_parse.py
 The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template. The Thunderbird log data set is an exception; due to the complexity and length of the data set, we used our [aecid-incremental-clustering](https://github.com/ait-aecid/aecid-incremental-clustering) and [aecid-parsergenerator](https://github.com/ait-aecid/aecid-parsergenerator) to generate event templates, however, some of them are overly specific or generic and log lines may match multiple events.
 
 ## Sampling the data sets
+
+This splits data sets in training files (only containing normal sequences) as well as test files containing normal and anomalous sequences respectively. There are two ways of sampling the data sets. First, samples can be generated from the parsed logs - this requires that the raw data sets are available and the `<dataset>_parse.py` script has been executed as described in the previous section. Second, in case that the templates have not changed and the sampled files already exist, it is also possible to just shuffle the normal training and test logs and thereby generate new samples.
+
+### Sample from parsed data sets
   
-To generate training and test files, run the sample.py script and specify the directory of the log data to be sampled. Moreover, the sampling ratio can be specified. For example, use the following command to sample the HDFS log data set so that the training file comprises 1% of the normal events.
+Run the `sample.py` script and specify the directory of the log data to be sampled. Moreover, the sampling ratio can be specified. For example, use the following command to sample the HDFS log data set so that the training file comprises 1% of the normal events.
   
 ```shell
 python3 sample.py --data_dir hdfs_xu --train_ratio 0.01
 ```
 
 This will generate the files `<dataset>_train`, `<dataset>_test_normal`, and `<dataset>_test_abnormal` in the respective directory. In case that fine-granular anomaly labels are available, the sampling script will also generate `<dataset>_test_abnormal_<anomaly>`, which contain only those sequences that correspond to the respective anomaly class.
+
+### Shuffle existing samples
+
+Running the `sample_shuffle.py` script is a faster approach of generating samples that requires that correctly generated samples are already available. The script is executed with the following command.
+
+```shell
+python3 sample_shuffle.py --data_dir hdfs_xu --train_ratio 0.01
+```
+
+This will read in all normal sequences from `<dataset>_train` and `<dataset>_test_normal`, shuffle them, and overwrite both files with new samples.
   
 ## Analyzing the data sets
 
