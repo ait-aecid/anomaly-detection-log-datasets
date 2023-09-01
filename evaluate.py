@@ -398,10 +398,10 @@ def get_event_times(lines):
         interarrival_time = time - prev_event_time
         if seq_id not in event_times:
             event_times[seq_id] = {}
-        if event_pair not in event_times:
-            event_times[seq_id][event_pair] = [interarrival_time]
+        if event_pair not in event_times[seq_id]:
+            event_times[seq_id][event_pair] = (interarrival_time, interarrival_time)
         else:
-            event_times[seq_id][event_pair].append(interarrival_time)
+            event_times[seq_id][event_pair] = (min(interarrival_time, event_times[seq_id][event_pair][0]), max(interarrival_time, event_times[seq_id][event_pair][1]))
         seq_prev[seq_id] = (event_id, time)
     return event_times
 
@@ -571,12 +571,15 @@ def get_event_times_range(event_times, sequences):
             if event_pair not in event_times_agg:
                 event_times_agg[event_pair] = times_list
             else:
-                event_times_agg[event_pair].extend(times_list)
+                #event_times_agg[event_pair].extend(times_list)
+                event_times_agg[event_pair] = (min(times_list[0], event_times_agg[event_pair][0]), max(times_list[1], event_times_agg[event_pair][1]))
     event_times_range = {}
     for event_pair, times_list in event_times_agg.items():
         if event_pair in event_times_range:
             print('Warning: Overwriting event pair')
-        event_times_range[event_pair] = {"min": min(times_list), "max": max(times_list), "mean": np.mean(times_list), "std": np.std(times_list)}
+        # Todo: Implement a rolling mean and std
+        #event_times_range[event_pair] = {"min": min(times_list), "max": max(times_list), "mean": np.mean(times_list), "std": np.std(times_list)}
+        event_times_range[event_pair] = {"min": times_list[0], "max": times_list[1]}
     return event_times_range
 
 def evaluate_all(data_dir, time_det, normalize):
