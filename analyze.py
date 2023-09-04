@@ -235,7 +235,7 @@ with open(source + '/' + filename + '_train') as train, open(source + '/' + file
             i += 1
             p = count / total # Relative frequency (probability) of this ngram
             h -= p * np.log2(p)
-            norm = np.log2(len(ngrams))
+            norm = n * np.log2(len(set(list(event_types_normal) + list(event_types_anomalous)))) # Maximum entropy if all possible n-grams are evenly distributed. Note that this is equivalent to np.log2(pow(num_event_types, n))
             if norm != 0:
                 h_norm -= p * np.log2(p) / norm
         print(" - n=" + str(n) + ': Number of ' + str(n) + '-grams: ' + str(len(ngrams)) + ', H=' + str(round(h, 2)) + ', H_norm=' + str(round(h_norm, 2)))
