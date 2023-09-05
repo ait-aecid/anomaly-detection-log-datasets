@@ -183,13 +183,33 @@ with open(source + '/' + filename + '_train') as train, open(source + '/' + file
     for vals in predict_total.values():
         avg_following_events.append(len(vals))
     print('Number of distinct events following any event in all sequences: Average: ' + str(round(np.mean(avg_following_events), 2)) + ' Stddev: ' + str(round(np.std(avg_following_events), 2)))
+    processed_events = 0
+    sub_strings = set()
+    # For more information on the Lempel-Ziv complexity and the source of this code, see https://github.com/Naereen/Lempel-Ziv_Complexity/blob/master/src/lempel_ziv_complexity.py
+    for seq_id, sequence in sequences_extracted.items():
+        ind = 0
+        inc = 1
+        while True:
+            if ind + inc > len(sequence):
+                processed_events += len(sequence) - ind
+                break
+            sub_str = tuple(sequence[ind : ind + inc])
+            if sub_str in sub_strings:
+                inc += 1
+            else:
+                sub_strings.add(sub_str)
+                processed_events += len(sub_str)
+                ind += inc
+                inc = 1
+    print('Processed events: ' + str(processed_events))
+    print('Lempel-Ziv complexity: ' + str(len(sub_strings)))
+    # For more information on the Lempel-Ziv-Welsh Compression and the source of this code, see https://rosettacode.org/wiki/LZW_compression#Python
     unique_chars_list = list(set(list(event_types_normal) + list(event_types_anomalous)))
     codes = {(unique_chars_list[i],): i for i in range(len(unique_chars_list))} # Holds all events and their index as values; will be updated with codes later on
     unencoded_bits_per_event = np.ceil(np.log2(len(unique_chars_list))) # Solves number of required bits to represent all events, 2^bits >= #chars
     total_bits_uncompressed = 0
     total_bits_compressed = 0
     codes_counter = len(codes)
-    # For more information on the Lempel-Ziv-Welsh Compression and the source of this code, see https://asecuritysite.com/comms/lz
     for sequence in sequences_extracted.values():
         w = tuple()
         encoded = []
