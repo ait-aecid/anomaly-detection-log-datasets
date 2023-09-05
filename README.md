@@ -184,7 +184,6 @@ This will read in all normal sequences from `<dataset>_train` and `<dataset>_tes
 Run the analysis script to output some basic information about the data sets, specifically regarding the distributions of normal and anomalous samples. The script will also show the most frequent normal and anomalous sequences and count vectors; the number of displayed samples is specified with the `show_samples` parameter.
 
 ```shell
-python3 analyze.py --data_dir hdfs_xu --show_samples 3
 Load parsed sequences ...
 Parsed lines total: 12580989
 Parsed lines normal: 12255230 (97.4%)
@@ -223,13 +222,15 @@ Common anomalous count vectors:
 2950: (('22', 1), ('5', 1))
 Number of distinct events following any event in normal sequences: Average: 8.86 Stddev: 4.91
 Number of distinct events following any event in all sequences: Average: 10.03 Stddev: 6.96
+Processed events: 12580989
+Lempel-Ziv complexity: 70847
 Number of bits to represent all sequences before encoding: 75485934.0
 Number of bits to represent all sequences after encoding: 7931677.0
 Compression ratio: 89.49%
 Entropy of ngrams:
  - n=1: Number of 1-grams: 33, H=3.24, H_norm=0.64
- - n=2: Number of 2-grams: 319, H=4.38, H_norm=0.53
- - n=3: Number of 3-grams: 1257, H=5.41, H_norm=0.53
+ - n=2: Number of 2-grams: 319, H=4.38, H_norm=0.43
+ - n=3: Number of 3-grams: 1257, H=5.41, H_norm=0.36
 ```
 
 ## Evaluation of anomaly detection techniques
