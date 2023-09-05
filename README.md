@@ -425,24 +425,24 @@ New events + sequence length detection + edit distance
 Event-based detection requires that the data sets have been downloaded and the parsed.csv files have been created. Then, the following command can be used to evaluate event-based detection.
 
 ```shell
-python3 evaluate_events.py --data_dir bgl_loghub
+python3 evaluate_events.py --data_dir bgl_cfdr
 Read in parsed events ...
-Randomly selecting 43995 events from 4399503 normal events for training
-Testing 4355508 normal events
-Testing 348460 anomalous events
+Randomly selecting 43992 events from 4399265 normal events for training
+Testing 4355273 normal events
+Testing 348698 anomalous events
 
 New events
- Time=-1
- TP=348284
- FP=4327
- TN=4351181
- FN=176
- TPR=R=0.9994949205073753
- FPR=0.0009934547244546447
- TNR=0.9990065452755453
- P=0.9877286868532178
- F1=0.9935769700929007
- ACC=0.9990427230797488
+ Time=0.9108223915100098
+ TP=348532
+ FP=4912
+ TN=4350361
+ FN=166
+ TPR=R=0.9995239433549948
+ FPR=0.0011278282670225265
+ TNR=0.9988721717329775
+ P=0.9861024660200768
+ F1=0.9927678446809904
+ ACC=0.9989204865421152
 ```
 
 ## Citation

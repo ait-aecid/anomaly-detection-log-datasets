@@ -1,5 +1,6 @@
 import random
 import argparse
+import time
 
 parser = argparse.ArgumentParser()
 
@@ -77,6 +78,7 @@ def evaluate_all(source):
         fp = 0
         fn = 0
         tn = 0
+        start_time = time.time()
         print('Testing ' + str(len(test_normal)) + ' normal events')
         for elem in test_normal:
             if elem in known_events:
@@ -89,7 +91,7 @@ def evaluate_all(source):
                 fn += 1
             else:
                 tp += 1
-        return print_results("New events", tp, fn, tn, fp, -1)
+        return print_results("New events", tp, fn, tn, fp, time.time() - start_time)
 
 if __name__ == "__main__":
     evaluate_all(source)
