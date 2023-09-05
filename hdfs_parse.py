@@ -31,7 +31,7 @@ else:
     print('Unknown source ' + str(source))
     exit()
 
-with open(source + '/anomaly_label.csv') as labels_file:
+with open('hdfs_loghub/anomaly_label.csv') as labels_file:
     first = True
     normal_logs = []
     for line in labels_file:
