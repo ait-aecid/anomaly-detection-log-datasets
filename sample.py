@@ -47,7 +47,7 @@ def do_sample(source, train_ratio):
                 sequences_extracted[label][seq_id].append(event_id)
         num_train_logs = math.ceil(train_ratio * len(sequences_extracted['Normal']))
         print('Randomly selecting ' + str(num_train_logs) + ' sequences from ' + str(len(sequences_extracted['Normal'])) + ' normal sequences for training')
-        train_seq_id_list = random.sample(sequences_extracted['Normal'].keys(), num_train_logs)
+        train_seq_id_list = random.sample(list(sequences_extracted['Normal'].keys()), num_train_logs)
         print('Write vector files ...')
         cnt = 0
         for label, seq_id_dict in sequences_extracted.items():
