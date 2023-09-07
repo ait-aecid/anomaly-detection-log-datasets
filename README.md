@@ -4,7 +4,7 @@ This repository contains scripts to analyze publicly available log data sets (HD
 
 The repository comes with some pre-processed samples in each data set directory, which allow to get started without having to download all the data sets. These files are named `<dataset>_train` (which contains approximately 1% of all normal log sequences for training), `<dataset>_test_normal` (which contains the remaining normal log sequences for testing), and `<dataset>_test_abnormal` (which contains all anomalous log sequences). Running the anomaly detection techniques on these samples yield the following F1 scores (averaged over 25 runs; highest score in bold; maximum in brackets):
 
-<p align="center"><img src="https://raw.githubusercontent.com/ait-aecid/anomaly-detection-log-datasets/main/img/results.png" width=75% height=75%></p>
+<p align="center"><img src="https://raw.githubusercontent.com/ait-aecid/anomaly-detection-log-datasets/main/img/results.png" width=95% height=95%></p>
 
 ## Getting the data sets
 
