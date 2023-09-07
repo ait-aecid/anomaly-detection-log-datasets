@@ -186,6 +186,8 @@ This will read in all normal sequences from `<dataset>_train` and `<dataset>_tes
 Run the analysis script to output some basic information about the data sets, specifically regarding the distributions of normal and anomalous samples. The script will also show the most frequent normal and anomalous sequences and count vectors; the number of displayed samples is specified with the `show_samples` parameter.
 
 ```shell
+python3 analyze.py --data_dir hdfs_xu --show_samples 3
+
 Load parsed sequences ...
 Parsed lines total: 12580989
 Parsed lines normal: 12255230 (97.4%)
@@ -428,6 +430,7 @@ Event-based detection requires that the data sets have been downloaded and the p
 
 ```shell
 python3 evaluate_events.py --data_dir bgl_cfdr
+
 Read in parsed events ...
 Randomly selecting 43992 events from 4399265 normal events for training
 Testing 4355273 normal events
