@@ -54,7 +54,7 @@ def evaluate_all(source):
     normal_events = []
     abnormal_events = []
     header = True
-    with open(source.split('/')[0] + '/parsed.csv') as extracted: #, open(source + '_train', 'w+') as train, open(source + '_test_normal', 'w+') as test_norm, open(source + '_test_abnormal', 'w+') as test_abnormal:
+    with open(source.split('/')[0] + '/parsed.csv') as extracted:
         print('Read in parsed events ...')
         for line in extracted:
             if header:
