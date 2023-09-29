@@ -155,7 +155,7 @@ To parse the data, run the respective `<dataset>_parse.py` script. For example, 
 python3 hdfs_parse.py
 ```
 
-The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template. The Thunderbird log data set is an exception; due to the complexity and length of the data set, we used our [aecid-incremental-clustering](https://github.com/ait-aecid/aecid-incremental-clustering) and [aecid-parsergenerator](https://github.com/ait-aecid/aecid-parsergenerator) to generate event templates, however, some of them are overly specific or generic and log lines may match multiple events.
+The templates used for parsing are taken from [Logpai/Logparser](https://github.com/logpai/logparser) and adapted or extended to make sure that all logs are parsed and that each log event only fits into to one template. The Thunderbird log data set is an exception; due to the complexity and length of the data set, we used our [aecid-incremental-clustering](https://github.com/ait-aecid/aecid-incremental-clustering) and [aecid-parsergenerator](https://github.com/ait-aecid/aecid-parsergenerator) to generate event templates, however, some of them are overly specific or generic and log lines may match multiple events. If you create a better templates file for the entire Thunderbird data set, we kindly ask you to contribute to this repository by creating a pull request or contact us via aecid@ait.ac.at.
 
 ## Sampling the data sets
 
