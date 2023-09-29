@@ -247,7 +247,7 @@ The evaluate script provides some basic anomaly detection mechanisms, in particu
 python3 evaluate.py --data_dir hdfs_xu
 
 New event detection
- Time=0.4524719715118408
+ Time=0.44497013092041016
  TP=6065
  FP=95
  TN=552545
@@ -258,9 +258,10 @@ New event detection
  P=0.984577922077922
  F1=0.5274371684494303
  ACC=0.980915856275396
+ MCC=0.5895657230081826
 
 Sequence length detection
- Time=0.11102008819580078
+ Time=0.11799049377441406
  TP=6232
  FP=56
  TN=552584
@@ -271,9 +272,10 @@ Sequence length detection
  P=0.9910941475826972
  F1=0.5389604773847617
  ACC=0.9812775910570734
+ MCC=0.5997920384634181
 
 New events + sequence length detection
- Time=0.5634920597076416
+ Time=0.5629606246948242
  TP=9034
  FP=148
  TN=552492
@@ -284,10 +286,11 @@ New events + sequence length detection
  P=0.9838815072968852
  F1=0.6943889315910838
  ACC=0.9860363350296236
+ MCC=0.7212100247967879
 
 Count vector clustering
  Threshold=0.06
- Time=3.2528252601623535
+ Time=3.152735471725464
  TP=16674
  FP=1373
  TN=551267
@@ -298,10 +301,11 @@ Count vector clustering
  P=0.9239208732753367
  F1=0.9559409488318762
  ACC=0.9973010370901071
+ MCC=0.9551611400464348
 
 Count vector clustering with idf
  Threshold=0.11
- Time=3.307997226715088
+ Time=3.234915018081665
  TP=16646
  FP=1283
  TN=551357
@@ -312,10 +316,11 @@ Count vector clustering with idf
  P=0.9284399576105751
  F1=0.9575747116518538
  ACC=0.9974099087234274
+ MCC=0.9567415416969752
 
 2-gram detection
  Threshold=0.02
- Time=4.987187147140503
+ Time=4.8256494998931885
  TP=13535
  FP=1311
  TN=551329
@@ -326,10 +331,11 @@ Count vector clustering with idf
  P=0.9116933854236832
  F1=0.8543744476707487
  ACC=0.9918978432880639
+ MCC=0.8520074824446313
 
 3-gram detection
  Threshold=0.02
- Time=5.164008378982544
+ Time=4.991070032119751
  TP=15715
  FP=3273
  TN=549367
@@ -340,9 +346,10 @@ Count vector clustering with idf
  P=0.8276279755635138
  F1=0.8772958186791715
  ACC=0.9922806499987709
+ MCC=0.875006494847835
 
 10-gram detection
- Time=4.9592812061309814
+ Time=5.027217626571655
  TP=16838
  FP=552640
  TN=0
@@ -353,9 +360,10 @@ Count vector clustering with idf
  P=0.029567428416901093
  F1=0.05743660415202723
  ACC=0.029567428416901093
+ MCC=inf
 
 2-gram + sequence length detection
- Time=5.098207235336304
+ Time=4.9436399936676025
  TP=15183
  FP=1358
  TN=551282
@@ -366,10 +374,11 @@ Count vector clustering with idf
  P=0.9179009733389759
  F1=0.9097336648791157
  ACC=0.9947091898194487
+ MCC=0.9070467207448273
 
 New events + sequence length detection + count vector clustering
  Threshold=0.06
- Time=3.816317319869995
+ Time=3.715696096420288
  TP=16705
  FP=1381
  TN=551259
@@ -380,10 +389,11 @@ New events + sequence length detection + count vector clustering
  P=0.9236425964834679
  F1=0.9566487229412438
  ACC=0.9973414249540807
+ MCC=0.9559289328409916
 
 New events + sequence length detection + count vector clustering with idf
  Threshold=0.11
- Time=3.8714892864227295
+ Time=3.7978756427764893
  TP=16659
  FP=1296
  TN=551344
@@ -394,10 +404,11 @@ New events + sequence length detection + count vector clustering with idf
  P=0.9278195488721804
  F1=0.9576064150834938
  ACC=0.9974099087234274
+ MCC=0.9567967296426484
 
 Edit distance detection
  Threshold=0.19
- Time=41.20497465133667
+ Time=38.88217902183533
  TP=9699
  FP=543
  TN=552097
@@ -408,10 +419,11 @@ Edit distance detection
  P=0.9469830111306385
  F1=0.7163220088626292
  ACC=0.9865104534327929
+ MCC=0.7329451552899283
 
 New events + sequence length detection + edit distance
  Threshold=0.21
- Time=41.76846671104431
+ Time=39.44513964653015
  TP=12231
  FP=516
  TN=552124
@@ -422,6 +434,7 @@ New events + sequence length detection + edit distance
  P=0.9595198870322429
  F1=0.8268379246239649
  ACC=0.9910040422983856
+ MCC=0.8307160056585571
 ```
 
 ### Event-based detection
