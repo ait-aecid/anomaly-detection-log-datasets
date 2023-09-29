@@ -208,6 +208,9 @@ def print_results(name, tp, fn, tn, fp, threshold, det_time):
         p = tp / (tp + fp)
     fone = get_fone(tp, fn, tn, fp)
     acc = (tp + tn) / (tp + tn + fp + fn)
+    mcc = "inf"
+    if tp + fp != 0 and tp + fn != 0 and tn + fp != 0 and tn + fn != 0:
+        mcc = ((tp * tn) - (fp * fn)) / math.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
     print('')
     print(name)
     if threshold is not None:
@@ -225,6 +228,7 @@ def print_results(name, tp, fn, tn, fp, threshold, det_time):
     print(' P=' + str(p))
     print(' F1=' + str(fone))
     print(' ACC=' + str(acc))
+    print(' MCC=' + str(mcc))
     return {'tp': tp, 'fp': fp, 'tn': tn, 'fn': fn, 'tpr': tpr, 'fpr': fpr, 'tnr': tnr, 'p': p, 'f1': fone, 'acc': acc, 'threshold': threshold, 'name': name, 'time': det_time}
 
 read_lines_cnt = 0 # global counter
