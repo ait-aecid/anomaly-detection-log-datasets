@@ -5,7 +5,7 @@ import math
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['adfa_verazuo', 'hdfs_xu', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'hadoop_loghub', 'thunderbird_cfdr', 'awsctd_djpasco'])
+parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['adfa_verazuo', 'hdfs_xu', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'openstack_parisakalaki', 'hadoop_loghub', 'thunderbird_cfdr', 'awsctd_djpasco'])
 parser.add_argument("--train_ratio", default=0.01, help="fraction of normal data used for training", type=float)
 
 params = vars(parser.parse_args())

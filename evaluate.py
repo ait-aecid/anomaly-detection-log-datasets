@@ -5,7 +5,7 @@ import time
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['hdfs_xu', 'hdfs_logdeep', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'hadoop_loghub', 'thunderbird_cfdr', 'adfa_verazuo', 'awsctd_djpasco'])
+parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['hdfs_xu', 'hdfs_logdeep', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'openstack_parisakalaki', 'hadoop_loghub', 'thunderbird_cfdr', 'adfa_verazuo', 'awsctd_djpasco'])
 parser.add_argument("--time_detection", default="False", help="carry out detection based on interarrival times (requires parsed.csv file)", type=str)
 
 params = vars(parser.parse_args())

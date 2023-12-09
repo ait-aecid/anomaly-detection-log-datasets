@@ -49,3 +49,44 @@ Error during <*>
 Bad response code while validating token: <*>
 Identity response: <*>
 Unable to validate token: Failed to fetch token data from identity server
+Deleted allocation for instance <*>
+Neutron deleted interface <*>; detaching it from the instance and deleting it from the info cache
+Periodic task is updating the host stats, it is trying to get disk info for <*>, but the backing disk storage was removed by a concurrent operation such as resize. Error: No disk at <*>: nova.exception.DiskNotFound: No disk at <*>
+[instance: <*>] Traceback<*>
+[instance: <*>]   File<*>
+[instance: <*>]     <*>
+[instance: <*>] 
+Claim successful on node <*>
+During sync_power_state the instance has a pending task (block_device_mapping). Skip.
+During sync_power_state the instance has a pending task (powering-off). Skip.
+During handling of the above exception, another exception occurred:
+During the sync_power process the instance has moved from host <*> to host <*>
+Instance is paused unexpectedly. Ignore.
+During _sync_instance_power_state the DB power_state (<*>) does not match the vm_power_state from the hypervisor (<*>). Updating power_state in the DB to match the hypervisor.
+Build of instance <*> aborted: Failed to allocate the network(s), not rescheduling.: nova.exception.BuildAbortException: Build of instance <*> aborted: Failed to allocate the network(s), not rescheduling.
+<*> nova.exception.VirtualInterfaceCreateException: Virtual Interface creation failed<*>
+oslo_db.sqlalchemy.update_match.NoRowsMatched: Zero rows matched for <*> attempts
+Instance shutdown by itself. Calling the stop API. <*>
+Received unexpected event <*> for instance with vm_state <*> and task_state <*>.
+eventlet.timeout.Timeout: <*> seconds
+Instance is already powered off in the hypervisor when stop is called.
+<*> Conflict updating instance <*>. Expected: <*>
+qemu-system-x86_64: terminating on signal <*> from pid <*> (/usr/sbin/libvirtd)
+libvirt.libvirtError: Domain not found: no domain with matching uuid <*>
+libvirt.libvirtError: internal error: process exited while connecting to monitor
+libvirt.libvirtError: Requested operation is not valid: domain is not running
+Ignoring supplied device name: <*>. Libvirt can't honour user-supplied dev names
+Instance failed to spawn: nova.exception.FlavorDiskSmallerThanImage: Flavor's disk is too small for requested image. Flavor disk is <*> bytes, image is <*> bytes.
+Build of instance <*> aborted: Flavor's disk is too small for requested image. Flavor disk is <*> bytes, image is <*> bytes.<*>
+Get console output
+<*> nova.scheduler.client.report [<*>] Unable to delete allocation for instance <*>: <*>
+Booting with volume-backed-image <*> at <*>
+Build of instance <*> aborted: Volume <*> did not finish being created even after we waited <*> seconds or <*> attempts. And its status is error.: <*>
+Instance failed block device setup: nova.exception.VolumeNotCreated: Volume <*> did not finish being created even after we waited <*> seconds or <*> attempts. And its status is error.
+error during stop() in sync_power_state.: nova.exception.InstanceInvalidState: Instance <*> in task_state powering-off. Cannot stop while the instance is in this state.
+Instance <*> has allocations against this compute host but is not found in the database.
+Instance <*> is not being actively managed by this compute host but has allocations referencing this compute host: <*>
+<*> nova.exception.InstanceNotFound: Instance <*> could not be found.
+Failed to delete allocations for consumer <*>. Error: <*>
+ents: <*>
+ <<*>>

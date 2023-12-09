@@ -81,6 +81,10 @@ For more information on Loghub, see
 
 ### OpenStack
 
+There are two versions of this data set: The ones provided Loghub and an updated version by Kalaki et al. that addresses some problems.
+
+#### Du et al.
+
 The original OpenStack logs are not available anymore; however, [Loghub](https://github.com/logpai/loghub) provides a version of this data set.
 
 ```shell
@@ -89,9 +93,21 @@ wget https://zenodo.org/record/3227177/files/OpenStack.tar.gz
 tar -xvf OpenStack.tar.gz
 ```
 
-Fore more information on this data set, see
+For more information on this data set, see
  * Du, M., Li, F., Zheng, G., & Srikumar, V. (2017, October). Deeplog: Anomaly detection and diagnosis from system logs through deep learning. In Proceedings of the 2017 ACM SIGSAC conference on computer and communications security (pp. 1285-1298).
  * He, S., Zhu, J., He, P., & Lyu, M. R. (2020). Loghub: a large collection of system log datasets towards automated log analytics. arXiv preprint arXiv:2008.06448.
+
+#### Kalaki et al.
+
+Since the original logs are known to be difficult to use for anomaly detection, Kalaki et al. provide an updated version.
+
+```shell
+cd openstack_parisakalaki/
+git clone https://github.com/ParisaKalaki/openstack-logs.git
+```
+
+For more information on this data set, see
+ * Kalaki, P. S., Shameli‐Sendi, A., & Abbasi, B. K. E. (2023). Anomaly detection on OpenStack logs based on an improved robust principal component analysis model and its projection onto column space. Software: Practice and Experience, 53(3), 665-681.
 
 ### Hadoop
 
