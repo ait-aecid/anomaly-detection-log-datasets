@@ -185,7 +185,7 @@ Run the `sample.py` script and specify the directory of the log data to be sampl
 python3 sample.py --data_dir hdfs_xu --train_ratio 0.01
 ```
 
-This will generate the files `<dataset>_train`, `<dataset>_test_normal`, and `<dataset>_test_abnormal` in the respective directory. In case that fine-granular anomaly labels are available, the sampling script will also generate `<dataset>_test_abnormal_<anomaly>`, which contain only those sequences that correspond to the respective anomaly class.
+This will generate the files `<dataset>_train`, `<dataset>_test_normal`, and `<dataset>_test_abnormal` in the respective directory. In case that fine-granular anomaly labels are available, the sampling script will also generate `<dataset>_test_abnormal_<anomaly>`, which contain only those sequences that correspond to the respective anomaly class. Use the `sample_ratio` parameter in case that only a fraction of all (both normal and anomalous) sequences should be used; they will be randomly sampled. Use the `time_window` parameter in case that time windows should be used for grouping instead of sequence identifiers, e.g., `--time_window 3600` generates sequences by grouping events in time windows of 1 hour independent from any available sequence identifiers.
 
 ### Shuffle existing samples
 
