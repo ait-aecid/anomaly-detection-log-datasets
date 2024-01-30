@@ -109,11 +109,7 @@ def do_sample(source, train_ratio):
         print('Randomly selecting ' + str(num_train_logs) + ' sequences from ' + str(len(sequences_extracted['Normal'])) + ' normal sequences for training')
         train_seq_id_list = random.sample(list(sequences_extracted['Normal'].keys()), num_train_logs)
         print('Write vector files ...')
-        cnt = 0
         for label, seq_id_dict in sequences_extracted.items():
-            cnt += 1
-            if cnt % 10 == 0:
-                print(str(cnt) + ' sequences written')
             if label == 'Normal':
                 for seq_id, event_list in seq_id_dict.items():
                     if seq_id in train_seq_id_list:
