@@ -7,10 +7,12 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files", type=str, choices=['hdfs_xu', 'hdfs_logdeep', 'hdfs_loghub', 'bgl_loghub', 'bgl_cfdr', 'openstack_loghub', 'openstack_parisakalaki', 'hadoop_loghub', 'thunderbird_cfdr', 'adfa_verazuo', 'awsctd_djpasco'])
 parser.add_argument("--time_detection", default="False", help="carry out detection based on interarrival times (requires parsed.csv file)", type=str)
+parser.add_argument("--time_window", default=None, help="size of the fixed time window in seconds (only required for time_detection; provide the same time_window that was used when running sample.py)", type=float)
 
 params = vars(parser.parse_args())
 data_dir = params["data_dir"]
 time_det = params["time_detection"] == "True"
+tw = params["time_window"]
 
 def train_cluster_count_vectors(sequences, idf):
     # Learn all unique count vectors from training file
@@ -380,10 +382,11 @@ def detect_ngram_old(ngram_model, n, sequences):
                 break
     return detected
 
-def get_event_times(lines):
+def get_event_times(lines, tw):
     # Compute event inter-arrival times
     event_times = {}
     seq_prev = {}
+    all_seq_ids = set()
     header = True
     for line in lines:
         if header:
@@ -391,9 +394,13 @@ def get_event_times(lines):
             colnames = line.strip('\n').split(';')
             continue
         parts = line.strip('\n').split(';')
-        seq_id = parts[colnames.index('seq_id')]
         event_id = parts[colnames.index('event_type')]
         time = float(parts[colnames.index('time')])
+        if tw is not None:
+            seq_id = str(int(math.floor(time / tw) * tw)) + '.0'
+        else:
+            seq_id = parts[colnames.index('seq_id')]
+        all_seq_ids.add(seq_id)
         if seq_id not in seq_prev:
             seq_prev[seq_id] = (event_id, time)
             continue
@@ -407,7 +414,7 @@ def get_event_times(lines):
         else:
             event_times[seq_id][event_pair] = (min(interarrival_time, event_times[seq_id][event_pair][0]), max(interarrival_time, event_times[seq_id][event_pair][1]))
         seq_prev[seq_id] = (event_id, time)
-    return event_times
+    return event_times, all_seq_ids
 
 import re
 def get_event_params(lines):
@@ -586,7 +593,7 @@ def get_event_times_range(event_times, sequences):
         event_times_range[event_pair] = {"min": times_list[0], "max": times_list[1]}
     return event_times_range
 
-def evaluate_all(data_dir, time_det, normalize):
+def evaluate_all(data_dir, time_det, normalize, tw=None):
     train_sequences = None
     test_normal_sequences = None
     test_abnormal_sequences = None
@@ -598,7 +605,10 @@ def evaluate_all(data_dir, time_det, normalize):
     if time_det:
         # Only load timing and parameter information when parsed logs are available
         with open(data_dir + '/parsed.csv') as parsed:
-            event_times = get_event_times(parsed) # Required for detection based on event inter-arrival times
+            event_times, parsed_seq_ids = get_event_times(parsed, tw) # Required for detection based on event inter-arrival times
+            vector_seq_ids = set(list(train_sequences.keys()) + list(test_normal_sequences.keys()) + list(test_abnormal_sequences.keys()))
+            if parsed_seq_ids != vector_seq_ids:
+                print('WARNING: Mismatching sequence IDS in parsed (' + str(len(parsed_seq_ids)) + ' sequences) and vector files (' + str(len(vector_seq_ids)) + ' sequences). Did you use the correct time_window?')
         #with open(data_dir + '/parsed.csv') as parsed:
         #    event_params = get_event_params(parsed) # Required for detection based on parameter values
     if len(set(test_normal_sequences.keys()).intersection(test_abnormal_sequences.keys())) != 0:
@@ -717,4 +727,4 @@ def evaluate_all(data_dir, time_det, normalize):
     return results
 
 if __name__ == "__main__":
-    evaluate_all(data_dir, time_det, True)
+    evaluate_all(data_dir, time_det, True, tw)
