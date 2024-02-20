@@ -20,7 +20,7 @@ if source in ['adfa_verazuo', 'hdfs_xu', 'hdfs_loghub', 'openstack_loghub', 'ope
     # Only BGL and Thunderbird should be used with time-window based grouping
     print('WARNING: Using time-window grouping, even though session-based grouping is recommended for this data set.')
 
-def do_sample(source, train_ratio):
+def do_sample(source, train_ratio, tw):
     header = True
     sequences_extracted = {}
     tw_groups = {} # Only used for time-window based grouping
@@ -126,4 +126,4 @@ def do_sample(source, train_ratio):
                         test_abnormal.write(str(seq_id) + ',' + ' '.join([str(event) for event in event_list]) + '\n')
 
 if __name__ == "__main__":
-    do_sample(source, train_ratio)
+    do_sample(source, train_ratio, tw)
