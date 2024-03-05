@@ -6,10 +6,12 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--data_dir", default="bgl_cfdr", help="path to input files", type=str, choices=['bgl_loghub', 'bgl_cfdr', 'thunderbird_cfdr'])
 parser.add_argument("--train_ratio", default=0.01, help="fraction of normal data used for training", type=float)
+parser.add_argument("--sorting", default="random", help="sorting mode", type=str, choices=['random', 'chronological'])
 
 params = vars(parser.parse_args())
 source = params["data_dir"]
 train_ratio = params["train_ratio"]
+sorting = params["sorting"]
 
 def get_fone(tp, fn, tn, fp):
     if tp + fp + fn == 0:
@@ -69,8 +71,14 @@ def evaluate_all(source):
             else:
                 abnormal_events.append(event_id)
         num_train_logs = int(train_ratio * len(normal_events))
-        print('Randomly selecting ' + str(num_train_logs) + ' events from ' + str(len(normal_events)) + ' normal events for training')
-        random.shuffle(normal_events)
+        if sorting == "random":
+            print('Randomly selecting ' + str(num_train_logs) + ' events from ' + str(len(normal_events)) + ' normal events for training')
+            random.shuffle(normal_events)
+        elif sorting == "chronological":
+            print('Chronologically selecting ' + str(num_train_logs) + ' events from ' + str(len(normal_events)) + ' normal events for training')
+            pass
+        else:
+            print("Warning: Unknown sorting mode!")
         train = set(normal_events[:num_train_logs])
         test_normal = normal_events[num_train_logs:]
         known_events = set(train)
