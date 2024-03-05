@@ -9,18 +9,20 @@ parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files",
 parser.add_argument("--train_ratio", default=0.01, help="fraction of normal data used for training", type=float)
 parser.add_argument("--time_window", default=None, help="size of the fixed time window in seconds (setting this parameter replaces session-based with window-based grouping)", type=float)
 parser.add_argument("--sample_ratio", default=1.0, help="fraction of data sampled from normal and anomalous events", type=float)
+parser.add_argument("--sorting", default="random", help="sorting mode", type=str, choices=['random', 'chronological'])
 
 params = vars(parser.parse_args())
 source = params["data_dir"]
 train_ratio = params["train_ratio"]
 tw = params["time_window"]
 sample_ratio = params["sample_ratio"]
+sorting = params["sorting"]
 
 if source in ['adfa_verazuo', 'hdfs_xu', 'hdfs_loghub', 'openstack_loghub', 'openstack_parisakalaki', 'hadoop_loghub', 'awsctd_djpasco'] and tw is not None:
     # Only BGL and Thunderbird should be used with time-window based grouping
     print('WARNING: Using time-window grouping, even though session-based grouping is recommended for this data set.')
 
-def do_sample(source, train_ratio, tw):
+def do_sample(source, train_ratio, sorting="random", tw=None):
     header = True
     sequences_extracted = {}
     tw_groups = {} # Only used for time-window based grouping
@@ -106,8 +108,14 @@ def do_sample(source, train_ratio, tw):
             sequences_extracted = sampled_sequences
             print('Sampled ' + str(len(sequences_extracted['Normal'])) + ' normal and ' + str(num_sampled_anom) + ' anomalous sequences')
         num_train_logs = math.ceil(train_ratio * len(sequences_extracted['Normal']))
-        print('Randomly selecting ' + str(num_train_logs) + ' sequences from ' + str(len(sequences_extracted['Normal'])) + ' normal sequences for training')
-        train_seq_id_list = random.sample(list(sequences_extracted['Normal'].keys()), num_train_logs)
+        if sorting == "random":
+            print('Randomly selecting ' + str(num_train_logs) + ' sequences from ' + str(len(sequences_extracted['Normal'])) + ' normal sequences for training')
+            train_seq_id_list = random.sample(list(sequences_extracted['Normal'].keys()), num_train_logs)
+        elif sorting == "chronological":
+            print('Chronologically selecting ' + str(num_train_logs) + ' sequences from ' + str(len(sequences_extracted['Normal'])) + ' normal sequences for training')
+            train_seq_id_list = list(sequences_extracted['Normal'].keys())[:num_train_logs]
+        else:
+            print("Warning: Unknown sorting mode!")
         print('Write vector files ...')
         for label, seq_id_dict in sequences_extracted.items():
             if label == 'Normal':
@@ -126,4 +134,4 @@ def do_sample(source, train_ratio, tw):
                         test_abnormal.write(str(seq_id) + ',' + ' '.join([str(event) for event in event_list]) + '\n')
 
 if __name__ == "__main__":
-    do_sample(source, train_ratio, tw)
+    do_sample(source, train_ratio, sorting, tw)
