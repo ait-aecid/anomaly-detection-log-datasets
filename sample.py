@@ -9,7 +9,8 @@ parser.add_argument("--data_dir", default="hdfs_xu", help="path to input files",
 parser.add_argument("--train_ratio", default=0.01, help="fraction of normal data used for training", type=float)
 parser.add_argument("--time_window", default=None, help="size of the fixed time window in seconds (setting this parameter replaces session-based with window-based grouping)", type=float)
 parser.add_argument("--sample_ratio", default=1.0, help="fraction of data sampled from normal and anomalous events", type=float)
-parser.add_argument("--sorting", default="random", help="sorting mode", type=str, choices=['random', 'chronological'])
+parser.add_argument("--sorting", default="random", help="sorting mode: pick sequences randomly (random) or only pick the first ones (chronological)", type=str, choices=['random', 'chronological'])
+parser.add_argument("--anomaly_types", default="False", help="set to True to additionally create sequence files for each anomaly type (files are named <dataset>_test_abnormal_<anomaly>", type=str, choices=['True', 'False'])
 
 params = vars(parser.parse_args())
 source = params["data_dir"]
@@ -17,6 +18,7 @@ train_ratio = params["train_ratio"]
 tw = params["time_window"]
 sample_ratio = params["sample_ratio"]
 sorting = params["sorting"]
+output_anomaly_types = params["anomaly_types"]
 
 if source in ['adfa_verazuo', 'hdfs_xu', 'hdfs_loghub', 'openstack_loghub', 'openstack_parisakalaki', 'hadoop_loghub', 'awsctd_djpasco'] and tw is not None:
     # Only BGL and Thunderbird should be used with time-window based grouping
@@ -124,7 +126,7 @@ def do_sample(source, train_ratio, sorting="random", tw=None):
                         train.write(str(seq_id) + ',' + ' '.join([str(event) for event in event_list]) + '\n')
                     else:
                         test_norm.write(str(seq_id) + ',' + ' '.join([str(event) for event in event_list]) + '\n')
-            elif label == "Anomaly":
+            elif label == "Anomaly" or output_anomaly_types == "False":
                 for seq_id, event_list in seq_id_dict.items():
                     test_abnormal.write(str(seq_id) + ',' + ' '.join([str(event) for event in event_list]) + '\n')
             else:
