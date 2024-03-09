@@ -110,10 +110,10 @@ def do_sample(source, train_ratio, sorting="random", tw=None):
         num_train_logs = math.ceil(train_ratio * len(sequences_extracted['Normal']))
         if sorting == "random":
             print('Randomly selecting ' + str(num_train_logs) + ' sequences from ' + str(len(sequences_extracted['Normal'])) + ' normal sequences for training')
-            train_seq_id_list = random.sample(list(sequences_extracted['Normal'].keys()), num_train_logs)
+            train_seq_id_list = set(random.sample(list(sequences_extracted['Normal'].keys()), num_train_logs))
         elif sorting == "chronological":
             print('Chronologically selecting ' + str(num_train_logs) + ' sequences from ' + str(len(sequences_extracted['Normal'])) + ' normal sequences for training')
-            train_seq_id_list = list(sequences_extracted['Normal'].keys())[:num_train_logs]
+            train_seq_id_list = set(list(sequences_extracted['Normal'].keys())[:num_train_logs])
         else:
             print("Warning: Unknown sorting mode!")
         print('Write vector files ...')
