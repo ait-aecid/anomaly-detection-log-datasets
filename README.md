@@ -99,7 +99,7 @@ For more information on this data set, see
 
 #### Kalaki et al.
 
-Since the original logs are known to be difficult to use for anomaly detection, Kalaki et al. provide an updated version.
+Since the original logs are known to be difficult to use for anomaly detection, [Kalaki et al.](https://github.com/ParisaKalaki/openstack-logs) provide an updated version.
 
 ```shell
 cd openstack_parisakalaki/
