@@ -1,10 +1,15 @@
 # anomaly-detection-log-datasets
 
-This repository contains scripts to analyze publicly available log data sets (HDFS, BGL, OpenStack, Hadoop, Thunderbird, ADFA, AWSCTD) that are commonly used to evaluate sequence-based anomaly detection techniques. The following sections show how to get the data sets, parse and group them into sequences of event types, and apply some basic anomaly detection techniques. If you use any of the resources provided in this repository, please cite the publications stated [at the end of this ReadMe](#citation).
+This repository contains scripts to analyze publicly available log data sets (HDFS, BGL, OpenStack, Hadoop, Thunderbird, ADFA, AWSCTD) that are commonly used to evaluate sequence-based anomaly detection techniques. The following sections show how to get the data sets, parse and group them into sequences of event types, and apply some basic anomaly detection techniques. If you use any of the resources provided in this repository, please cite the following publication:
+* Landauer, M., Skopik, F., & Wurzenberger, M. (2023): A Critical Review of Common Log Data Sets Used for Evaluation of Sequence-based Anomaly Detection Techniques. [arxiv:2309.02854](https://arxiv.org/abs/2309.02854). \[[PDF](https://arxiv.org/pdf/2309.02854.pdf)\]
 
 The repository comes with some pre-processed samples in each data set directory, which allow to get started without having to download all the data sets. These files are named `<dataset>_train` (which contains approximately 1% of all normal log sequences for training), `<dataset>_test_normal` (which contains the remaining normal log sequences for testing), and `<dataset>_test_abnormal` (which contains all anomalous log sequences). Running the anomaly detection techniques on these samples yield the following F1 scores (averaged over 25 runs; highest score in bold; maximum in brackets):
 
 <p align="center"><img src="https://raw.githubusercontent.com/ait-aecid/anomaly-detection-log-datasets/main/img/results.png" width=95% height=95%></p>
+
+## Requirements
+
+The repository was tested with Python 3.8.5 on Ubuntu 20.04.2 LTS with 32 GB RAM and Intel(R) Core(TM) i7. Package requirements are stated in the [requirements.txt](https://github.com/ait-aecid/anomaly-detection-log-datasets/blob/main/requirements.txt) and can be installed with `pip3 install -r requirements.txt`. The evaluations with DeepLog and LogAnomaly were carried out based on the code provided in the [LogDeep repository](https://github.com/d0ng1ee/logdeep), using a Tesla V100S 32GB GPU.
 
 ## Getting the data sets
 
