@@ -1,7 +1,7 @@
 # anomaly-detection-log-datasets
 
 This repository contains scripts to analyze publicly available log data sets (HDFS, BGL, OpenStack, Hadoop, Thunderbird, ADFA, AWSCTD) that are commonly used to evaluate sequence-based anomaly detection techniques. The following sections show how to get the data sets, parse and group them into sequences of event types, and apply some basic anomaly detection techniques. If you use any of the resources provided in this repository, please cite the following publication:
-* Landauer, M., Skopik, F., & Wurzenberger, M. (2023): A Critical Review of Common Log Data Sets Used for Evaluation of Sequence-based Anomaly Detection Techniques. [arxiv:2309.02854](https://arxiv.org/abs/2309.02854). \[[PDF](https://arxiv.org/pdf/2309.02854.pdf)\]
+* Landauer, M., Skopik, F., & Wurzenberger, M. (2024). [A critical review of common log data sets used for evaluation of sequence-based anomaly detection techniques.](https://doi.org/10.5281/zenodo.11528723) Proceedings of the ACM on Software Engineering, 1(FSE), 1354-1375. \[[PDF](https://dl.acm.org/doi/pdf/10.1145/3660768)\]
 
 The repository comes with some pre-processed samples in each data set directory, which allow to get started without having to download all the data sets. These files are named `<dataset>_train` (which contains approximately 1% of all normal log sequences for training), `<dataset>_test_normal` (which contains the remaining normal log sequences for testing), and `<dataset>_test_abnormal` (which contains all anomalous log sequences). Running the anomaly detection techniques on these samples yield the following F1 scores (averaged over 25 runs; highest score in bold; maximum in brackets):
 
@@ -487,5 +487,5 @@ New events
 ## Citation
 
 If you use any resources from this repository, please cite the following publications:
-* Landauer, M., Skopik, F., & Wurzenberger, M. (2023): A Critical Review of Common Log Data Sets Used for Evaluation of Sequence-based Anomaly Detection Techniques. [arxiv:2309.02854](https://arxiv.org/abs/2309.02854). \[[PDF](https://arxiv.org/pdf/2309.02854.pdf)\]
+* Landauer, M., Skopik, F., & Wurzenberger, M. (2024). [A critical review of common log data sets used for evaluation of sequence-based anomaly detection techniques.](https://doi.org/10.5281/zenodo.11528723) Proceedings of the ACM on Software Engineering, 1(FSE), 1354-1375. \[[PDF](https://dl.acm.org/doi/pdf/10.1145/3660768)\]
 * Landauer, M., Onder, S., Skopik, F., & Wurzenberger, M. (2023): [Deep Learning for Anomaly Detection in Log Data: A Survey](https://www.sciencedirect.com/science/article/pii/S2666827023000233). Machine Learning with Applications, Volume 12, 15 June 2023, 100470, Elsevier. \[[PDF](https://arxiv.org/pdf/2207.03820.pdf)\]
