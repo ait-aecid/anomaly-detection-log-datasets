@@ -19,7 +19,7 @@ There are three versions of this data set: The original logs from Wei Xu et al.,
 
 #### Original logs from Wei Xu et al.
 
-The original logs can be retrieved from [Wei Xu's website](http://people.iiis.tsinghua.edu.cn/~weixu/sospdata.html) as follows.
+The original logs can be retrieved from [Wei Xu's website](http://people.iiis.tsinghua.edu.cn/~weixu/sospdata.html) as follows. (_Note:_ As of October 2025, the dataset seems to have been removed from the website. We recommend to use the Loghub version instead.)
 
 ```shell
 cd hdfs_xu/
